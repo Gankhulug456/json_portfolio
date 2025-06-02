@@ -1,0 +1,864 @@
+/* ─── Base & Typography ───────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* ─── TOP BAR ───────────────────────────────────────────────────────── */
+/* ─── TOP BAR + TICKER VIEWPORT ──────────────────────────────────── */
+#top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 2rem;
+  background: #000000;
+  overflow: hidden;
+  z-index: 1001;
+}
+
+#ticker {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.ticker-wrapper {
+  display: flex;
+  will-change: transform;
+  /* JS will set an explicit width on .ticker-wrapper */
+}
+
+.ticker-item {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  white-space: nowrap;
+  color: #ffffff;
+  font-size: 0.9rem;
+  line-height: 2rem;
+  padding-left: 1rem;
+  flex-shrink: 0;
+  /* Do NOT give .ticker-item any margin-right */
+}
+
+/* ─── NAV BAR ───────────────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+nav a {
+  color: #fff;
+  margin: 0 1rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* ─── BODY MARGIN ───────────────────────────────────────────────── */
+body {
+  margin-top: 5rem; /* 2rem ticker + ~3rem nav */
+}
+
+/* ─── MOBILE ADJUSTMENTS (<768px) ───────────────────────────────── */
+@media (max-width: 768px) {
+  #top-bar {
+    height: 1.5rem;
+  }
+  .ticker-item {
+    font-size: 0.75rem;
+    line-height: 1.5rem;
+    padding-left: 0.5rem;
+  }
+  nav {
+    top: 1.5rem;
+    margin-top: 1.5rem;
+    padding: 0.25rem 1.5rem;
+  }
+  body {
+    margin-top: calc(1.5rem + 5rem);
+  }
+}
+
+body {
+  margin: 0;
+  font-family: "SF Compact Display", sans-serif;
+  font-weight: 200;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: 100;
+  margin: 2rem 0;
+  margin-bottom: 50px;
+  text-align: center;
+}
+button {
+  font-family: "SF Compact Display", sans-serif;
+  font-weight: 200;
+}
+
+/* ─── Navigation ───────────────────────────────────────────────────────── */
+
+/* ─── Desktop & Tablet up to 1024px ───────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 2rem; /* or whatever distance below the ticker */
+  left: 50%; /* pin to the left edge */
+  right: 0; /* pin to the right edge */
+  width: 100vw;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+  padding: 0.5rem 0; /* vertical padding only */
+  z-index: 100; /* above canvas, below ticker */
+}
+
+nav a {
+  color: #fff;
+  padding-top: 2%;
+  margin: 0 1.5rem;
+  text-decoration: none;
+  white-space: nowrap; /* prevent awkward wrapping */
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* ─── Mobile (<768px) Adjustments ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  nav {
+    top: 0rem; /* move closer to top on small screens */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.25rem 0.5rem; /* reduce vertical/horizontal padding */
+    /* allow links to wrap in a second row if needed */
+    flex-wrap: wrap;
+    max-width: 90vw; /* ensure it never overflows the viewport */
+  }
+
+  nav a {
+    padding-top: 1rem;
+    margin: 0 0.5rem; /* smaller horizontal gap between links */
+    font-size: 0.9rem; /* shrink font slightly */
+  }
+  .flip-card {
+    width: 200px;
+    height: 300px;
+  }
+}
+
+/* ─── Sections & Layout ───────────────────────────────────────────────── */
+
+section {
+  padding: 4rem 2rem;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.6s ease;
+}
+section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#intro,
+#work-text,
+#game-text,
+#ar-text,
+#hardware,
+#about,
+#contact {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Chat Bubbles ────────────────────────────────────────────────────── */
+
+.chat-window {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.message {
+  max-width: 400px;
+  padding: 1rem;
+  border-radius: 20px;
+  margin: 0.5rem 0;
+  position: relative;
+  line-height: 1.4;
+}
+
+/* ─── Base Styles (Desktop & Tablet) ───────────────────────────────── */
+.bot {
+  background: #278eff;
+  align-self: flex-start;
+  margin-left: 33%;
+  margin-bottom: 3%;
+}
+.user {
+  background: #0a0;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-right: 33%;
+}
+
+/* ─── Mobile Overrides (screens ≤ 600px) ───────────────────────────── */
+@media (max-width: 600px) {
+  .bot,
+  .user {
+    /* On mobile, let bubbles go a bit wider (up to 90%),
+       and remove those large 33% margins to avoid cutting off text. */
+    max-width: 90%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0.75rem; /* slightly smaller vertical gutter */
+  }
+
+  .bot {
+    align-self: flex-start; /* still left‐aligned */
+  }
+  .user {
+    align-self: flex-end; /* still right‐aligned */
+  }
+}
+
+/* ─── Grids & Cards ───────────────────────────────────────────────────── */
+
+.grid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.project-card,
+.about-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.placeholder {
+  background: #333;
+  border-radius: 12px;
+}
+
+.project-card .placeholder {
+  width: 350px;
+  height: 230px;
+}
+.project-card img {
+  object-fit: cover;
+}
+
+.project-card h2 {
+  margin: 1rem 0 0.5rem;
+}
+
+.project-card p {
+  margin: 0;
+}
+
+.game-embed .placeholder.large {
+  width: 600px;
+  height: 320px;
+  font-size: 4rem;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ar-projects .project-card .placeholder {
+  width: 200px;
+  height: 120px;
+}
+
+/* About grid: 3 cols × 2 rows */
+.about-grid {
+  width: 90%;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.about-card.placeholder {
+  width: 150px;
+  height: 100px;
+}
+
+/* ─── Contact List ─────────────────────────────────────────────────────── */
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+  text-align: center;
+}
+.contact-list li {
+  margin: 0.5rem 0;
+  cursor: pointer;
+}
+.contact-list li:hover {
+  color: #0a0;
+}
+
+/* ─── Base (desktop) behavior: show full 700×700 ────────────────── */
+/* ---------------------------------------------
+   1) Base styles: treat .game-embed as a 700×700 box
+---------------------------------------------- */
+.game-embed {
+  width: 700px; /* “natural” width of your game */
+  height: 700px; /* “natural” height of your game */
+  margin: 0 auto; /* center on large screens */
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.game-embed iframe {
+  /* Let the iframe “report” its content as 700×700. 
+     We will shrink it with transform, not by changing width/height here. */
+  width: 700px;
+  height: 700px;
+  border: 0;
+  transform-origin: 0 0; /* pivot at top‐left so scaling stays flush */
+}
+
+/* ---------------------------------------------
+   2) On screens narrower than 700px, scale down 
+      the iframe so it exactly matches viewport width
+---------------------------------------------- */
+@media (max-width: 700px) {
+  .game-embed {
+    justify-content: center;
+    width: 100vw; /* container stretches to full viewport width */
+    height: calc(
+      100vw
+    ); /* keep it square before scaling inside, so container always “holds” the right aspect ratio */
+  }
+  .game-embed iframe {
+    /* Compute scale as (viewport‐width ÷ 700px). 
+       For example, if viewport is 350px wide, scale = 350/700 = 0.5 */
+    transform: scale(0.5);
+  }
+}
+
+/* ─── Overlay Container ─────────────────────────────────────────────────── */
+
+.project-detail {
+  /* Remove display:none; instead keep it in the DOM but hidden */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+
+  /* Start hidden */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* When “.active” is added, fade in */
+.project-detail.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ─── Close Button (unchanged) ───────────────────────────────────────────── */
+.project-detail .close-btn {
+  position: absolute;
+  margin: 0.5%;
+  width: 30px;
+  background: none;
+  border: none;
+  color: #000000;
+  font-size: 1.25rem;
+  cursor: pointer;
+  z-index: 1000;
+}
+.close-btn img {
+  width: 30px;
+  height: 100%;
+}
+
+/* ─── Main Content Container ────────────────────────────────────────────── */
+
+/* Wrap your actual card/container in an extra wrapper so we can animate it */
+.detail-container-wrapper {
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  transition: opacity 0.35s ease-out 0.15s, transform 0.35s ease-out 0.15s;
+  /* delay a bit so backdrop fades first, then container animates */
+}
+
+.project-detail.active .detail-container-wrapper {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* The inner “detail-container” stays mostly the same */
+.detail-container {
+  max-width: 1200px;
+  margin: 4rem auto;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  /* remove any animation/transition here; it’s handled by wrapper */
+}
+
+/* ─── Left Column ───────────────────────────────────────────────────────── */
+.detail-left {
+  flex: 1 1 40%;
+  padding: 2rem 2rem 2rem 3rem;
+  background: #fafafa;
+  box-sizing: border-box;
+}
+
+.detail-logo img {
+  max-width: 120px;
+  margin-bottom: 1rem;
+}
+
+.detail-title {
+  font-size: 2rem;
+  margin: 0.5rem 0 0.5rem;
+  color: #222;
+}
+
+.detail-subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+/* Metadata Grid */
+.detail-meta {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  row-gap: 0.75rem;
+  column-gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.meta-row {
+  display: contents;
+}
+
+.meta-label {
+  font-weight: 600;
+  color: #333;
+}
+
+.meta-value {
+  color: #666;
+}
+
+.detail-meta a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.detail-meta a:hover {
+  text-decoration: underline;
+}
+
+/* Problem/Solution Sections */
+.detail-section {
+  margin-bottom: 2rem;
+}
+
+.detail-section h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.detail-section p {
+  color: #444;
+  line-height: 1.6;
+}
+
+/* ─── Right Column ──────────────────────────────────────────────────────── */
+.detail-right {
+  flex: 1 1 60%;
+  position: relative;
+  background: #fff;
+}
+
+/* Make image cover entire right column */
+.detail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #000;
+}
+
+/* ─── Responsive Adjustments ───────────────────────────────────────────── */
+@media (max-width: 992px) {
+  .detail-left,
+  .detail-right {
+    flex: 1 1 100%;
+  }
+  .detail-left {
+    padding: 1.5rem;
+  }
+  .detail-right {
+    margin-top: 1rem;
+  }
+}
+
+/* The floating label that follows the cursor */
+#hover-cursor,
+#hover-cursor2 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: #222;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  pointer-events: none; /* so it never blocks clicks */
+  opacity: 0; /* hide by default */
+  transform: translate(-50%, -120%); /* shift it above+left of mouse */
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+  z-index: 2000; /* above everything else */
+}
+
+/* When visible, we set opacity to 1 */
+#hover-cursor.visible,
+#hover-cursor2.visible {
+  opacity: 1;
+}
+
+/* Example styling for your project cards */
+.project-card {
+  position: relative;
+  cursor: none; /* Hide default pointer while hovering over the card */
+}
+.flip-card {
+  cursor: none; /* Show pointer when hovering over the flip card */
+}
+
+/* ─── ABOUT INTRO ─────────────────────────────────────────────────────────── */
+.about-intro {
+  max-width: 1100px;
+  margin: 0 auto 3rem;
+  text-align: center;
+  color: #f5f5f5; /* light on dark background, adjust if needed */
+}
+.about-intro h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.about-intro p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+/* ─── TIMELINE CONTAINER ────────────────────────────────────────────────── */
+.timeline-container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  border-left: 3px solid #444; /* vertical line */
+}
+
+/* Common styles for each timeline item */
+.timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+/* The date on the left side */
+.timeline-date {
+  position: absolute;
+  left: -14rem; /* shift left of the line */
+  top: 0.7rem;
+  width: 11rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ccc;
+  text-align: right;
+}
+
+/* The content box on the right */
+.timeline-content {
+  background: #222; /* or #333 */
+  color: #f5f5f5;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Title within content */
+.timeline-content h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+/* Subtitle (company + location) */
+.timeline-content h3 {
+  margin: 0.25rem 0 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #bbb;
+}
+
+/* Bullet list styling */
+.timeline-content ul {
+  list-style: disc inside;
+  margin: 0;
+  padding-left: 1.2rem;
+}
+.timeline-content ul li {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+}
+
+/* ─── TIMELINE DOT ──────────────────────────────────────────────────────── */
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -1.65rem; /* position at the left edge of .timeline-content */
+  top: 0.8rem;
+  width: 1rem;
+  height: 1rem;
+  background: #4caf50; /* accent color dot */
+  border-radius: 50%;
+  border: 3px solid #222; /* same bg color to blend nicely */
+}
+
+/* ─── RESPONSIVE ADJUSTMENTS ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .timeline-container {
+    padding-left: 0.5rem;
+    border-left: 2px solid #555;
+  }
+  .timeline-item {
+    margin-bottom: 2rem;
+  }
+  .timeline-date {
+    position: relative;
+    left: 0;
+    width: auto;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+  }
+  .timeline-content {
+    padding: 1rem;
+  }
+  .timeline-item::before {
+    left: -1rem;
+    top: 0.6rem;
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+}
+@media (max-width: 768px) {
+  #canvas-container {
+    scale: 1;
+  }
+}
+
+/* ─── Container & Profile ─────────────────────────────────────────── */
+/* ─── Container holding everything ───────────────────────────────── */
+/* ── 1) Flip‐card container (does not clip its children) ───────── */
+#text-container {
+  position: relative;
+  perspective: 800px; /* enable 3D for children */
+}
+
+/* ── 2) Wrapper that holds front + back faces ──────────────────── */
+.flip-card {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px; /* adjust to match your image’s natural size */
+  height: 500px; /* same as above */
+}
+
+/* ── 3) Inner 3D container ─────────────────────────────────────── */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
+}
+
+/* ── 4) Flip when .flipped is applied ─────────────────────────── */
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* ── 5) Both faces share these basics ─────────────────────────── */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+/* ── 6) Front face shows the photo ────────────────────────────── */
+.flip-card-front .profile {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5%;
+}
+
+/* ── 7) Back face: rotate 180° so it sits “behind” initially ─── */
+.flip-card-back {
+  transform: rotateY(180deg);
+  display: flex;
+  border-radius: 5%;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0, 0, 0); /* dark background behind text */
+}
+
+/* ── 8) Style your back‐face text ─────────────────────────────── */
+.back-text {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+  color: #ffffff;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 10px;
+}
+
+/* ─── Each “Line” as a Clipping Window ───────────────────────────── */
+.line {
+  width: 100vw; /* Full viewport width */
+  height: 120px; /* Adjust vertical size as needed */
+  overflow: hidden; /* Clip anything outside */
+  white-space: nowrap; /* Keep text on one line */
+  position: relative;
+}
+
+/* Inner wrapper that holds two copies side by side (set in JS) */
+.line-wrapper {
+  display: inline-flex;
+  /* JavaScript will set width = 2 × one-span width */
+}
+
+/* ─── The “Item” We Clone & Animate ──────────────────────────────── */
+.line-item {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 600;
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 100px;
+  color: antiquewhite;
+  padding: 10px 0;
+  /* No margins here! Otherwise you'll introduce a gap at wrap. */
+}
+
+/* ─── Opacity Per Line ───────────────────────────────────────────── */
+.line1 .line-item {
+  opacity: 0.3;
+}
+.line2 .line-item {
+  opacity: 0.6;
+}
+.line3 .line-item {
+  opacity: 1;
+}
+.line4 .line-item {
+  opacity: 1;
+}
+.line5 .line-item {
+  opacity: 0.6;
+}
+.line6 .line-item {
+  opacity: 0.3;
+}
+
+/* ─── CONTACT SECTION STYLING ─────────────────────────────────────── */
+#contact {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+#contact h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.contact-list {
+  list-style: none; /* remove bullets */
+  margin: 0;
+  padding: 0;
+}
+
+.contact-list li {
+  margin: 0.5rem 0; /* spacing between items */
+}
+
+.contact-list a {
+  text-decoration: none;
+  color: #ffffff; /* for example, LinkedIn-blue; change as desired */
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.2s ease;
+}
+
+.contact-list a:hover {
+  color: #cacaca; /* darker shade on hover */
+}
+html {
+  scroll-behavior: smooth;
+}
+section {
+  scroll-margin-top: calc(2rem + 2.5rem);
+}

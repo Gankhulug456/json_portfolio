@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <title>Ganaa | Works & About</title>
+
+    <!-- Three.js Import Map (if you still want the intro canvas) -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.module.js"
+        }
+      }
+    </script>
+
+    <!-- Fonts & GSAP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.cdnfonts.com/css/sf-compact-display"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Orbitron:wght@400..900&family=Zen+Dots&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollSmoother.min.js"></script>
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="top-bar">
+      <div id="ticker">
+        <div class="ticker-wrapper">
+          <span class="ticker-item">
+            JavaScript • Python • C • C++ • OpenMP • MPI • Three.js • Blender •
+            Arduino C++ • HTML • CSS • React • Node.js • FastAPI • WordPress •
+            Git • Linux
+          </span>
+          <!-- (We will clone this span multiple times in JS) -->
+        </div>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#work-text">WORK</a>
+      <a href="#about">ABOUT</a>
+      <a href="#contact">CONNECT</a>
+    </nav>
+
+    <!-- Optional Three.js Intro -->
+    <div id="canvas-container">
+      <script type="module" defer src="three.js"></script>
+    </div>
+    <!-- Chat CTA -->
+    <section id="chat1-messages" class="chat-window">
+      <div class="message bot">
+        Cool, right? I just couldn't resist dropping this on my site.<br />
+        Ready to see what else I build?
+      </div>
+    </section>
+    <section id="chat1-actions" class="chat-window">
+      <button class="message user" onclick="scrollToSection('work-text')">
+        Show me your projects →
+      </button>
+    </section>
+
+    <section id="work-text">
+      <h1>SELECTED WORKS</h1>
+
+      <div class="grid projects">
+        <div class="project-card" data-project="polymaker">
+          <img
+            src="assets_mac/mat_com_lap1-min.png"
+            alt="Project 1"
+            class="placeholder"
+          />
+          <h2>Polymaker Website</h2>
+          <p>Interactive Web Applications</p>
+        </div>
+        <div class="project-card" data-project="legal_contract-analyzer">
+          <img src="assets_mac/qcom.png" alt="Project 1" class="placeholder" />
+          <h2>Legal Contract Analyzer</h2>
+          <p>Hackathon Winning Project</p>
+        </div>
+        <div class="project-card" data-project="parallel">
+          <img
+            src="assets_mac/parallel_computing/A.jpg"
+            alt="Project 1"
+            class="placeholder"
+          />
+          <h2>Parallel Computing</h2>
+          <p>High-Performance Computing Projects</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chat CTA #2 -->
+    <section id="chat2-messages" class="chat-window">
+      <div class="message bot">
+        I also make games and maybe you want to play one?
+      </div>
+    </section>
+    <section id="chat2-actions" class="chat-window">
+      <button class="message user" onclick="scrollToSection('game-text')">
+        Play the game →
+      </button>
+    </section>
+
+    <!-- Game Embed -->
+    <section id="game-text">
+      <h1>Game Project</h1>
+      <div class="game-embed">
+        <iframe
+          src="gamemaker_html/index.html"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </section>
+
+    <!-- Pre-hardware chat CTA -->
+    <section id="pre-hardware-messages" class="chat-window">
+      <div class="message bot">
+        You've seen my games and magic.<br />
+        But did you ever wonder what happens inside a CPU or how to talk to
+        real-world sensors?
+      </div>
+    </section>
+    <section id="pre-hardware-actions" class="chat-window">
+      <button class="message user" onclick="scrollToSection('hardware')">
+        Show me your hardware →
+      </button>
+    </section>
+
+    <!-- Hardware & Systems Section -->
+    <section id="hardware">
+      <h1>HARDWARE & SYSTEMS</h1>
+
+      <div class="grid projects">
+        <div class="project-card" data-project="logisim_register_alu">
+          <img
+            src="assets_mac/Four bit ALU/alu.png"
+            alt="Project 1"
+            class="placeholder"
+          />
+          <h2>4-Bit Register + ALU</h2>
+          <p>Logisim-Evolution</p>
+        </div>
+        <div class="project-card" data-project="arduino_midi_controller">
+          <img src="assets_mac/dj/dj.jpg" alt="Project 1" class="placeholder" />
+          <h2>Arduino MIDI Controller & Sensor Interface</h2>
+          <p>Personal DJ MIDI Controller</p>
+        </div>
+        <div class="project-card" data-project="hinge_matchmaker_robot">
+          <img
+            src="assets_mac/HingeRobot/h1.jpg"
+            alt="Project 1"
+            class="placeholder"
+          />
+          <h2>Hinge Matchmaker Robot</h2>
+          <p>Arduino powered project</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chat CTA #4 -->
+    <section id="chat4-messages" class="chat-window">
+      <div class="message bot">
+        That's a peek at my tech playground.<br />
+        But who am I beyond the code?
+      </div>
+    </section>
+    <section id="chat4-actions" class="chat-window">
+      <button class="message user" onclick="scrollToSection('about')">
+        Tell me about you →
+      </button>
+    </section>
+
+    <section id="about">
+      <div id="text-container">
+        <!-- Line 1 -->
+        <div class="line line1">
+          <div class="line-wrapper">
+            <span class="line-item">
+              Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa
+              Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa
+            </span>
+          </div>
+        </div>
+
+        <!-- Line 2 -->
+        <div class="line line2">
+          <div class="line-wrapper">
+            <span class="line-item">
+              Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa
+              Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa
+            </span>
+          </div>
+        </div>
+
+        <!-- Line 3 -->
+        <div class="line line3">
+          <div class="line-wrapper">
+            <span class="line-item">
+              Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa
+              Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa
+            </span>
+          </div>
+        </div>
+
+        <!-- Line 4 -->
+        <div class="line line4">
+          <div class="line-wrapper">
+            <span class="line-item">
+              Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa
+              Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa
+            </span>
+          </div>
+        </div>
+
+        <!-- Line 5 -->
+        <div class="line line5">
+          <div class="line-wrapper">
+            <span class="line-item">
+              Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa
+              Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa
+            </span>
+          </div>
+        </div>
+
+        <!-- Line 6 -->
+        <div class="line line6">
+          <div class="line-wrapper">
+            <span class="line-item">
+              Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa
+              Ganaa Ganaa Ganaa Ganaa Ganaa Ganaa
+            </span>
+          </div>
+        </div>
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <!-- Front face: your photo -->
+            <div class="flip-card-front">
+              <img src="assets_mac/profile.JPG" alt="Profile" class="profile" />
+            </div>
+            <!-- Back face: any text you want behind the photo -->
+            <div class="flip-card-back">
+              <div class="back-text">
+                <!-- Put your custom text here -->
+                I’m Ganaa Bayaraa, a CS major (with a dash of Interactive Media
+                Arts) at NYU Shanghai. Raised in Mongolia and now in Shanghai, I
+                blend creativity with tech—automating workflows at Polymaker,
+                maintaining NYU labs, and building on-device AI tools. I live
+                for web and app projects in JavaScript and Python, always
+                chasing that “aha!” moment.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <!-- Vertical timeline of experience -->
+      <div class="timeline-container">
+        <!-- Entry 1 -->
+        <div class="timeline-item">
+          <div class="timeline-date">Apr 2024 – May 2025</div>
+          <div class="timeline-content">
+            <h2>Software Development Intern</h2>
+            <h3>Polymaker LLC · Shanghai, China</h3>
+            <ul>
+              <li>
+                Engineered Python scripts to automate product listing &amp;
+                data-extraction, reducing manual effort by 50%.
+              </li>
+              <li>
+                Designed/deployed three dynamic WordPress Bricks/Oxygen modules
+                – revamped key product pages, boosted UX satisfaction by 30% and
+                cut page-load times by 20%.
+              </li>
+              <li>
+                Developed interactive JS graphics for Panchroma &amp; Fiberon
+                filament launches, increasing on-page engagement.
+              </li>
+              <li>
+                Collaborated with cross-functional teams (marketing, design) to
+                ensure seamless frontend integration.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Entry 2 -->
+        <div class="timeline-item">
+          <div class="timeline-date">Sep 2022 – May 2024</div>
+          <div class="timeline-content">
+            <h2>Technology Support Intern</h2>
+            <h3>NYU Shanghai · Interactive Media Arts Department</h3>
+            <ul>
+              <li>
+                Automated macOS and Windows provisioning for 50+ IMA
+                workstations using JAMF scripts – cut setup time by 40%.
+              </li>
+              <li>
+                Wrote shell/Python utilities to diagnose &amp; remediate
+                OS-level issues in under one hour.
+              </li>
+              <li>
+                Provisioned, upgraded, and troubleshot OS &amp; hardware,
+                maintaining 100% uptime with average repair times < 2 hours.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Sep 2022 – Dec 2022</div>
+          <div class="timeline-content">
+            <h2>IT Support Assistant</h2>
+            <h3>NYU Shanghai · Information Technology</h3>
+            <ul>
+              <li>
+                Assisted faculty and students with hardware/software issues
+                across campus.
+              </li>
+              <li>
+                Processed and maintained instructional documentation for NYU
+                Shanghai systems and equipment.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h1>CONNECT+</h1>
+      <ul class="contact-list">
+        <li>
+          <a
+            href="https://www.linkedin.com/in/ganaa-bay/"
+            target="_blank"
+            rel="noopener"
+            >LINKEDIN</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://github.com/Gankhulug456"
+            target="_blank"
+            rel="noopener"
+            >GITHUB</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.instagram.com/theganhulug/"
+            target="_blank"
+            rel="noopener"
+            >INSTAGRAM</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/@khulugsjourney"
+            target="_blank"
+            rel="noopener"
+            >YOUTUBE</a
+          >
+        </li>
+        <li><a href="mailto:gb2683@nyu.edu">EMAIL</a></li>
+      </ul>
+    </section>
+
+    <!-- ─── ONE detail overlay container ────────────────────────────── -->
+    <div class="project-detail" id="detail-overlay">
+      <div class="detail-container-wrapper" id="detail-overlay-wrapper">
+        <div class="detail-container">
+          <!-- Left column -->
+          <div class="detail-left" id="overlay-left"></div>
+          <!-- Right column: mockup image -->
+          <button class="close-btn">
+            <img src="assets_mac/icons8-macos-minimize-60.png" alt="" />
+          </button>
+          <div class="detail-right" id="overlay-right"></div>
+        </div>
+      </div>
+    </div>
+    <!-- This DIV follows the mouse and shows “VIEW PROJECT →” -->
+    <div id="hover-cursor">VIEW PROJECT →</div>
+
+    <div id="hover-cursor2">VIEW ABOUT ME →</div>
+    <script src="data.js"></script>
+    <script defer src="script.js"></script>
+  </body>
+</html>
