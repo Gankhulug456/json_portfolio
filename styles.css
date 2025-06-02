@@ -150,7 +150,7 @@ nav a:hover {
     padding: 0.25rem 0.5rem; /* reduce vertical/horizontal padding */
     /* allow links to wrap in a second row if needed */
     flex-wrap: wrap;
-    max-width: 90vw; /* ensure it never overflows the viewport */
+    max-width: 100vw; /* ensure it never overflows the viewport */
   }
 
   nav a {
