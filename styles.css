@@ -873,3 +873,21 @@ html {
 section {
   scroll-margin-top: calc(2rem + 2.5rem);
 }
+
+/* Shrink only the ticker‐item in the top bar on mobile */
+@media (max-width: 768px) {
+  #top-bar #ticker .ticker-item {
+    font-size: 0.8rem;    /* adjust as needed (0.8rem ≈ 13px) */
+    line-height: 1.5rem;  /* keep it centered inside the bar */
+    padding-left: 0.5rem; /* match your existing mobile padding */
+  }
+}
+
+@media (max-width: 600px) {
+  #top-bar #ticker .ticker-item {
+    font-size: 0.6rem;    /* even smaller on very small phones */
+    line-height: 1.2rem;
+    padding-left: 0.4rem;
+  }
+}
+
