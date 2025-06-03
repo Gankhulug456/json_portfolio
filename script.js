@@ -20,14 +20,17 @@ function scrollToSection(id) {
   });
 }
 
-// ─── Reveal sections on scroll ───────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
+  // Decide mobile vs. desktop threshold
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  const threshold = isMobile ? 0.2 : 0.5;
+
   document.querySelectorAll("section").forEach((sec) => {
     const obs = new IntersectionObserver(
-      ([e]) => {
-        sec.classList.toggle("show", e.isIntersecting);
+      ([entry]) => {
+        sec.classList.toggle("show", entry.isIntersecting);
       },
-      { threshold: 0.5 }
+      { threshold: threshold }
     );
     obs.observe(sec);
   });
@@ -268,9 +271,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// JS: toggle the “flipped” class on the .flip-card when clicked
-document.addEventListener("DOMContentLoaded", () => {
-  const card = document.querySelector(".flip-card");
+// JS: toggle the “flipped” class on the .flip-card when clickeddocument.addEventListener("DOMContentLoaded", () => {
+document.querySelectorAll(".flip-card").forEach((card) => {
   card.addEventListener("click", () => {
     card.classList.toggle("flipped");
   });

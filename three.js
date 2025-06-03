@@ -148,24 +148,25 @@ document.addEventListener("DOMContentLoaded", () => {
   function attachHover(cards, cursorElement) {
     cards.forEach((card) => {
       card.addEventListener("mouseenter", () => {
-        // Show this cursor, hide the other one
         cursorElement.classList.add("visible");
       });
-
       card.addEventListener("mousemove", (e) => {
         cursorElement.style.left = e.clientX + "px";
         cursorElement.style.top = e.clientY + "px";
       });
-
       card.addEventListener("mouseleave", () => {
         cursorElement.classList.remove("visible");
       });
     });
   }
 
-  // Attach to project‐cards → hover-cursor
-  attachHover(projectCards, hoverProj);
+  // If we’re on a screen narrower than 768px (or touch‐enabled), skip hover.
+  const isMobile =
+    window.matchMedia("(max-width: 768px)").matches || "ontouchstart" in window;
 
-  // Attach to about‐cards → hover-cursor2
-  attachHover(aboutCards, hoverAbout);
+  if (!isMobile) {
+    // Attach only on desktop/tablet
+    attachHover(projectCards, hoverProj);
+    attachHover(aboutCards, hoverAbout);
+  }
 });

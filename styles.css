@@ -82,8 +82,10 @@ body {
     padding-left: 0.5rem;
   }
   nav {
+    background: none;
     top: 1.5rem;
     margin-top: 1.5rem;
+    width: 100%;
     padding: 0.25rem 1.5rem;
   }
   body {
@@ -715,13 +717,22 @@ section.show {
 }
 
 /* ── 2) Wrapper that holds front + back faces ──────────────────── */
+/* Desktop (or large screens) */
 .flip-card {
   position: absolute;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px; /* adjust to match your image’s natural size */
-  height: 500px; /* same as above */
+  width: 400px;
+  height: 500px;
+}
+
+/* Mobile (screens ≤ 600px): shrink the flip‐card */
+@media (max-width: 600px) {
+  .flip-card {
+    width: 90vw; /* 80% of the viewport width */
+    height: calc(80vw * (500 / 400)); /* maintain the 400:500 aspect ratio */
+  }
 }
 
 /* ── 3) Inner 3D container ─────────────────────────────────────── */
