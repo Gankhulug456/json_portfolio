@@ -5,7 +5,7 @@ const projects = [
     subtitle: "Interactive Web Applications",
     meta: {
       Industry: "3D Printing / E-Commerce",
-      Published: "©2024",
+      Published: "©2025",
       "Live Site": `<a href="https://polymaker.com" target="_blank">polymaker.com</a>`,
       Deliverables: "JavaScript/HTML/CSS, Custom Web Apps",
     },
@@ -31,7 +31,7 @@ const projects = [
     subtitle: "Hackathon Winning On-Device AI Tool",
     meta: {
       Industry: "Legal Tech",
-      Published: "February 2025",
+      Published: "December 2024",
       Hackathon: "Qualcomm Snapdragon × LM Studio AI Builder (1st Place)",
       Deliverables: "FastAPI Backend, Jinja2 UI, OpenAI Python SDK Integration",
     },
