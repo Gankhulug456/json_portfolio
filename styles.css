@@ -77,7 +77,9 @@ body {
     height: 1.5rem;
   }
   .ticker-item {
-    font-size: 0.5rem;
+    padding-bottom: 0.5rem; /* add some bottom padding for better centering */
+    margin-bottom: 0.5rem; /* ensure it doesn't overflow vertically */
+    font-size: 0.7rem;
     line-height: 1.5rem;
     padding-left: 0.5rem;
   }
@@ -877,17 +879,18 @@ section {
 /* Shrink only the ticker‐item in the top bar on mobile */
 @media (max-width: 768px) {
   #top-bar #ticker .ticker-item {
-    font-size: 0.8rem;    /* adjust as needed (0.8rem ≈ 13px) */
-    line-height: 1.5rem;  /* keep it centered inside the bar */
+    font-size: 0.8rem; /* adjust as needed (0.8rem ≈ 13px) */
+    line-height: 1.5rem; /* keep it centered inside the bar */
     padding-left: 0.5rem; /* match your existing mobile padding */
+    padding-bottom: 0.5rem; /* add some bottom padding for better centering */
+    margin-bottom: 0.5rem; /* ensure it doesn't overflow vertically */
   }
 }
 
 @media (max-width: 600px) {
   #top-bar #ticker .ticker-item {
-    font-size: 0.6rem;    /* even smaller on very small phones */
+    font-size: 0.6rem; /* even smaller on very small phones */
     line-height: 1.2rem;
     padding-left: 0.4rem;
   }
 }
-
