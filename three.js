@@ -22,16 +22,14 @@ camera.add(listener);
 
 // Load the audio file
 const audioLoader = new THREE.AudioLoader();
-const chopstickAudio = []; // To store audio for each chopstick
+const chopstickAudio = [];
 
 audioLoader.load("glitter.mp3", function (buffer) {
   for (let i = 0; i < 20; i++) {
-    // Create an audio object for each chopstick
     const audio = new THREE.Audio(listener);
     audio.setBuffer(buffer);
-    audio.setVolume(1); // Set the volume of the audio for each chopstick
-    // audio.playbackRate = 0.99;
-    chopstickAudio.push(audio); // Store it in the array
+    audio.setVolume(1);
+    chopstickAudio.push(audio);
   }
 });
 
@@ -84,7 +82,6 @@ canvas.addEventListener("mousemove", onMouseMove);
 
 function onMouseMove(event) {
   const rect = canvas.getBoundingClientRect();
-  // Compute normalized device coordinates relative to the canvas rectangle:
   mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
   mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 }
@@ -107,14 +104,13 @@ function animate() {
       chopstick.material.color.setHSL(hue, 1, 0.5);
 
       if (chopstick.material.emissive) {
-        chopstick.material.emissive.setHSL(hue, 1, 0.5); // Change neon glow color
+        chopstick.material.emissive.setHSL(hue, 1, 0.5);
       }
 
-      // Stop the audio and play it again for this specific chopstick
       if (chopstickAudio[index].isPlaying) {
-        chopstickAudio[index].stop(); // Stop the audio if already playing
+        chopstickAudio[index].stop();
       }
-      chopstickAudio[index].play(); // Play audio again
+      chopstickAudio[index].play();
 
       console.log(`Audio is playing for chopstick ${index}`);
     } else {
@@ -144,7 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const hoverProj = document.getElementById("hover-cursor");
   const hoverAbout = document.getElementById("hover-cursor2");
 
-  // Helper to attach hover behavior to a set of cards & a particular cursor
   function attachHover(cards, cursorElement) {
     cards.forEach((card) => {
       card.addEventListener("mouseenter", () => {
@@ -160,12 +155,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // If we’re on a screen narrower than 768px (or touch‐enabled), skip hover.
   const isMobile =
     window.matchMedia("(max-width: 768px)").matches || "ontouchstart" in window;
 
   if (!isMobile) {
-    // Attach only on desktop/tablet
     attachHover(projectCards, hoverProj);
     attachHover(aboutCards, hoverAbout);
   }

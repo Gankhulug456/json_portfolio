@@ -32,6 +32,7 @@ const projects = [
     meta: {
       Industry: "Legal Tech",
       Published: "December 2024",
+      Github: `<a href="https://github.com/Gankhulug456/Qualcomm-Hackathon" target="_blank">Visit on Github</a>`,
       Hackathon: "Qualcomm Snapdragon × LM Studio AI Builder (1st Place)",
       Deliverables: "FastAPI Backend, Jinja2 UI, OpenAI Python SDK Integration",
     },
@@ -101,6 +102,7 @@ const projects = [
       Tools: "Blender (PCB Layout), WebSerial API",
       "Skills Demonstrated":
         "Embedded Systems, Soldering, Frontend Integration",
+      Github: `<a href="https://github.com/Gankhulug456/Arduino-MIDI-Controller" target="_blank">Visit on Github</a>`,
     },
     sections: [
       {
@@ -118,51 +120,49 @@ const projects = [
       "assets_mac/dj/djmov.gif",
     ],
   },
-
   {
-    key: "hinge_matchmaker_robot",
-    title: "Hinge Matchmaker Robot",
-    subtitle: "Arduino-Powered Automated Swiper",
+    key: "personnel_manager_bst",
+    title: "Personnel Manager",
+    subtitle: "Binary Search Tree-Based Personnel Record System",
     meta: {
-      Platform: "Arduino Uno/Nano",
-      Languages: "Arduino C++",
-      Tools: "Servos, Aluminum Foil, Photoresistor",
+      Platform: "C (CLI)",
+      Languages: "C",
+      Tools: "GCC, Makefile",
       "Skills Demonstrated":
-        "Embedded Systems, Mechanical Design, Sensor Integration",
+        "Data Structures, Pointer Management, Memory Allocation, Binary Search Trees, Linked Lists",
+      Github: `<a href="https://github.com/Gankhulug456/Personnel-Manager" target="_blank">Visit on Github</a>`,
     },
     sections: [
       {
         heading: "Overview",
-        text: "A playful Arduino‐powered gadget that automatically “swipes” left/right and taps “Heart” and “Send Like” on Hinge profiles using servo‐driven foil pads. Designed to run entirely on‐device for a whimsical take on automated dating.",
+        text: "A command-line personnel management system that stores and organizes employee records using Binary Search Trees (BSTs) for four sorting criteria: name, ID number, age, and salary. Records can be input dynamically, printed in sorted order, and traversed in a doubly linked list format for flexible display.",
       },
       {
-        heading: "Firmware & Electronics",
+        heading: "System Design",
         text:
-          "• Arduino C++ Firmware: Controls three servos and reads a light sensor to trigger random swipe cycles.  \n\n" +
-          "• Servo‐Foil Touch Hack: Soldered positive leads to aluminum foil so the capacitive screen registers each tap reliably without requiring direct human contact.  \n\n" +
-          "• Sensor Integration: Photoresistor triggers the swipe routine when ambient light indicates the phone is in place, ensuring the robot only activates when positioned correctly.",
+          "• Record Structure: Each personnel record includes name (first, last, middle initial), age, salary, and ID. Memory is dynamically allocated for strings to ensure scalability.  \n\n" +
+          "• BST Implementation: Four separate BSTs store the same records sorted by different criteria (name, age, salary, ID), enabling multi-perspective traversal.  \n\n" +
+          "• Inorder Traversal: Allows sorted printing of each BST by its respective key, supporting efficient organization and comparison.",
       },
       {
-        heading: "Mechanical Design",
+        heading: "Linked List Integration",
         text:
-          "• Custom 3D‐Printed Enclosure: Holds servos, foil pads, and sensor precisely above a smartphone for consistent alignment and reliable taps.  \n\n" +
-          "• Mechanical Calibration: Tuned servo pulse widths and delays to mimic human finger taps without slipping. Adjusted foil pad placement and enclosure tolerances for consistent touchscreen interaction.",
+          "• List Conversion: Converts the BST (sorted by name) into a doubly linked list to enable forward and backward iteration.  \n\n" +
+          "• Circular Display: Allows printing of a specified number of records, wrapping around the list when reaching the end, useful for limited previews in real-time systems.",
       },
     ],
-    image: [
-      "assets_mac/HingeRobot/h1.jpg",
-      "assets_mac/HingeRobot/Sequence 01_1 (1).gif",
-    ],
+    image: ["assets_mac/Preview.png"],
   },
-
   {
     key: "parallel",
     title: "Parallel Computing Projects",
+
     subtitle: "OpenMP & MPI Labs",
     meta: {
       Language: "C (GCC 9.3)",
       Platform: "Ubuntu 20.04, 8-core Intel CPU / Linux MPI Cluster",
       Tools: "OpenMP 4.5, OpenMPI 4.0",
+      Github: `<a href="https://github.com/Gankhulug456/parallel_computing" target="_blank">Visit on Github</a>`,
     },
     sections: [
       {

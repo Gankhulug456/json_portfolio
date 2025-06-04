@@ -7,8 +7,6 @@
       content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
     <title>Ganaa | Works & About</title>
-
-    <!-- Three.js Import Map (if you still want the intro canvas) -->
     <script type="importmap">
       {
         "imports": {
@@ -17,7 +15,6 @@
       }
     </script>
 
-    <!-- Fonts & GSAP -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -43,7 +40,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollSmoother.min.js"></script>
 
-    <!-- Your CSS -->
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -55,7 +51,6 @@
             Arduino C++ • HTML • CSS • React • Node.js • FastAPI • WordPress •
             Git • Linux
           </span>
-          <!-- (We will clone this span multiple times in JS) -->
         </div>
       </div>
     </div>
@@ -65,12 +60,9 @@
       <a href="#about">ABOUT</a>
       <a href="#contact">CONNECT</a>
     </nav>
-
-    <!-- Optional Three.js Intro -->
     <div id="canvas-container">
       <script type="module" defer src="three.js"></script>
     </div>
-    <!-- Chat CTA -->
     <section id="chat1-messages" class="chat-window">
       <div class="message bot">
         Cool, right? I just couldn't resist dropping this on my site.<br />
@@ -101,14 +93,14 @@
           <h2>Legal Contract Analyzer</h2>
           <p>Hackathon Winning Project</p>
         </div>
-        <div class="project-card" data-project="parallel">
+        <div class="project-card" data-project="personnel_manager_bst">
           <img
-            src="assets_mac/parallel_computing/A.jpg"
+            src="assets_mac/Preview.png"
             alt="Project 1"
             class="placeholder"
           />
-          <h2>Parallel Computing</h2>
-          <p>High-Performance Computing Projects</p>
+          <h2>Personnel Manager</h2>
+          <p>Binary Search Tree-Based Personnel Record System</p>
         </div>
       </div>
     </section>
@@ -165,19 +157,23 @@
           <h2>4-Bit Register + ALU</h2>
           <p>Logisim-Evolution</p>
         </div>
-        <div class="project-card" data-project="arduino_midi_controller">
-          <img src="assets_mac/dj/dj.jpg" alt="Project 1" class="placeholder" />
-          <h2>Arduino MIDI Controller & Sensor Interface</h2>
-          <p>Personal DJ MIDI Controller</p>
-        </div>
-        <div class="project-card" data-project="hinge_matchmaker_robot">
+        <div class="project-card" data-project="parallel">
           <img
-            src="assets_mac/HingeRobot/h1.jpg"
+            src="assets_mac/parallel_computing/A.jpg"
             alt="Project 1"
             class="placeholder"
           />
-          <h2>Hinge Matchmaker Robot</h2>
-          <p>Arduino powered project</p>
+          <h2>Parallel Computing</h2>
+          <p>High-Performance Computing Projects</p>
+        </div>
+        <div class="project-card" data-project="arduino_midi_controller">
+          <img
+            src="assets_mac/dj/djmov.gif"
+            alt="Project 1"
+            class="placeholder"
+          />
+          <h2>Arduino MIDI Controller & Sensor Interface</h2>
+          <p>Personal DJ MIDI Controller</p>
         </div>
       </div>
     </section>
@@ -197,7 +193,6 @@
 
     <section id="about">
       <div id="text-container">
-        <!-- Line 1 -->
         <div class="line line1">
           <div class="line-wrapper">
             <span class="line-item">
@@ -206,8 +201,6 @@
             </span>
           </div>
         </div>
-
-        <!-- Line 2 -->
         <div class="line line2">
           <div class="line-wrapper">
             <span class="line-item">
@@ -216,8 +209,6 @@
             </span>
           </div>
         </div>
-
-        <!-- Line 3 -->
         <div class="line line3">
           <div class="line-wrapper">
             <span class="line-item">
@@ -226,8 +217,6 @@
             </span>
           </div>
         </div>
-
-        <!-- Line 4 -->
         <div class="line line4">
           <div class="line-wrapper">
             <span class="line-item">
@@ -236,8 +225,6 @@
             </span>
           </div>
         </div>
-
-        <!-- Line 5 -->
         <div class="line line5">
           <div class="line-wrapper">
             <span class="line-item">
@@ -246,8 +233,6 @@
             </span>
           </div>
         </div>
-
-        <!-- Line 6 -->
         <div class="line line6">
           <div class="line-wrapper">
             <span class="line-item">
@@ -258,15 +243,12 @@
         </div>
         <div class="flip-card">
           <div class="flip-card-inner">
-            <!-- Front face: your photo -->
             <div class="flip-card-front">
               <img src="assets_mac/profile.JPG" alt="Profile" class="profile" />
             </div>
-            <!-- Back face: any text you want behind the photo -->
             <div class="flip-card-back">
               <div class="back-text">
-                <!-- Put your custom text here -->
-                I’m Ganaa Bayaraa, a CS major (with a dash of Interactive Media
+                I'm Ganaa Bayaraa, a CS major (with a dash of Interactive Media
                 Arts) at NYU Shanghai. Raised in Mongolia and now in Shanghai, I
                 blend creativity with tech—automating workflows at Polymaker,
                 maintaining NYU labs, and building on-device AI tools. I live
@@ -280,11 +262,9 @@
     </section>
 
     <section>
-      <!-- Vertical timeline of experience -->
       <div class="timeline-container">
-        <!-- Entry 1 -->
         <div class="timeline-item">
-          <div class="timeline-date">Apr 2024 – May 2025</div>
+          <div class="timeline-date">Apr 2024 - May 2025</div>
           <div class="timeline-content">
             <h2>Software Development Intern</h2>
             <h3>Polymaker LLC · Shanghai, China</h3>
@@ -295,8 +275,8 @@
               </li>
               <li>
                 Designed/deployed three dynamic WordPress Bricks/Oxygen modules
-                – revamped key product pages, boosted UX satisfaction by 30% and
-                cut page-load times by 20%.
+                and revamped key product pages, boosted UX satisfaction by 30%
+                and cut page-load times by 20%.
               </li>
               <li>
                 Developed interactive JS graphics for Panchroma &amp; Fiberon
@@ -310,16 +290,15 @@
           </div>
         </div>
 
-        <!-- Entry 2 -->
         <div class="timeline-item">
-          <div class="timeline-date">Sep 2022 – May 2024</div>
+          <div class="timeline-date">Sep 2022 - May 2024</div>
           <div class="timeline-content">
             <h2>Technology Support Intern</h2>
             <h3>NYU Shanghai · Interactive Media Arts Department</h3>
             <ul>
               <li>
                 Automated macOS and Windows provisioning for 50+ IMA
-                workstations using JAMF scripts – cut setup time by 40%.
+                workstations using JAMF scripts and cut setup time by 40%.
               </li>
               <li>
                 Wrote shell/Python utilities to diagnose &amp; remediate
@@ -334,7 +313,7 @@
         </div>
 
         <div class="timeline-item">
-          <div class="timeline-date">Sep 2022 – Dec 2022</div>
+          <div class="timeline-date">Sep 2022 - Dec 2022</div>
           <div class="timeline-content">
             <h2>IT Support Assistant</h2>
             <h3>NYU Shanghai · Information Technology</h3>
@@ -392,13 +371,19 @@
       </ul>
     </section>
 
-    <!-- ─── ONE detail overlay container ────────────────────────────── -->
+    <section id="footer">
+      <div class="footer-content">
+        <p>
+          © 2025 Ganaa Bayaraa. All rights reserved.
+          <br />
+          Made with creativity and a bit of code.
+        </p>
+      </div>
+    </section>
     <div class="project-detail" id="detail-overlay">
       <div class="detail-container-wrapper" id="detail-overlay-wrapper">
         <div class="detail-container">
-          <!-- Left column -->
           <div class="detail-left" id="overlay-left"></div>
-          <!-- Right column: mockup image -->
           <button class="close-btn">
             <img src="assets_mac/icons8-macos-minimize-60.png" alt="" />
           </button>
@@ -406,9 +391,7 @@
         </div>
       </div>
     </div>
-    <!-- This DIV follows the mouse and shows “VIEW PROJECT →” -->
     <div id="hover-cursor">VIEW PROJECT →</div>
-
     <div id="hover-cursor2">VIEW ABOUT ME →</div>
     <script src="data.js"></script>
     <script defer src="script.js"></script>
