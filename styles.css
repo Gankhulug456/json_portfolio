@@ -1,12 +1,9 @@
-/* ─── Base & Typography ───────────────────────────────────────────────── */
-
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 /* ─── TOP BAR ───────────────────────────────────────────────────────── */
-/* ─── TOP BAR + TICKER VIEWPORT ──────────────────────────────────── */
 #top-bar {
   position: fixed;
   top: 0;
@@ -28,7 +25,6 @@
 .ticker-wrapper {
   display: flex;
   will-change: transform;
-  /* JS will set an explicit width on .ticker-wrapper */
 }
 
 .ticker-item {
@@ -41,10 +37,7 @@
   line-height: 2rem;
   padding-left: 1rem;
   flex-shrink: 0;
-  /* Do NOT give .ticker-item any margin-right */
 }
-
-/* ─── NAV BAR ───────────────────────────────────────────────────── */
 nav {
   position: fixed;
   top: 2rem;
@@ -65,20 +58,16 @@ nav a {
 nav a:hover {
   text-decoration: underline;
 }
-
-/* ─── BODY MARGIN ───────────────────────────────────────────────── */
 body {
-  margin-top: 5rem; /* 2rem ticker + ~3rem nav */
+  margin-top: 5rem;
 }
-
-/* ─── MOBILE ADJUSTMENTS (<768px) ───────────────────────────────── */
 @media (max-width: 768px) {
   #top-bar {
     height: 1.5rem;
   }
   .ticker-item {
-    padding-bottom: 0.5rem; /* add some bottom padding for better centering */
-    margin-bottom: 0.5rem; /* ensure it doesn't overflow vertically */
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
     font-size: 0.7rem;
     line-height: 1.5rem;
     padding-left: 0.5rem;
@@ -116,14 +105,11 @@ button {
   font-weight: 200;
 }
 
-/* ─── Navigation ───────────────────────────────────────────────────────── */
-
-/* ─── Desktop & Tablet up to 1024px ───────────────────────────────────── */
 nav {
   position: fixed;
-  top: 2rem; /* or whatever distance below the ticker */
-  left: 50%; /* pin to the left edge */
-  right: 0; /* pin to the right edge */
+  top: 2rem;
+  left: 50%;
+  right: 0;
   width: 100vw;
   height: 10vh;
   display: flex;
@@ -138,37 +124,32 @@ nav a {
   padding-top: 2%;
   margin: 0 1.5rem;
   text-decoration: none;
-  white-space: nowrap; /* prevent awkward wrapping */
+  white-space: nowrap;
 }
 
 nav a:hover {
   text-decoration: underline;
 }
-
-/* ─── Mobile (<768px) Adjustments ───────────────────────────────────────── */
 @media (max-width: 768px) {
   nav {
-    top: 0rem; /* move closer to top on small screens */
+    top: 0rem;
     left: 50%;
     transform: translateX(-50%);
-    padding: 0.25rem 0.5rem; /* reduce vertical/horizontal padding */
-    /* allow links to wrap in a second row if needed */
+    padding: 0.25rem 0.5rem;
     flex-wrap: wrap;
-    max-width: 100vw; /* ensure it never overflows the viewport */
+    max-width: 100vw;
   }
 
   nav a {
     padding-top: 1rem;
-    margin: 0 0.5rem; /* smaller horizontal gap between links */
-    font-size: 0.9rem; /* shrink font slightly */
+    margin: 0 0.5rem;
+    font-size: 0.9rem;
   }
   .flip-card {
     width: 200px;
     height: 300px;
   }
 }
-
-/* ─── Sections & Layout ───────────────────────────────────────────────── */
 
 section {
   padding: 4rem 2rem;
@@ -234,23 +215,19 @@ section.show {
 @media (max-width: 600px) {
   .bot,
   .user {
-    /* On mobile, let bubbles go a bit wider (up to 90%),
-       and remove those large 33% margins to avoid cutting off text. */
     max-width: 90%;
     margin-left: 0;
     margin-right: 0;
-    margin-bottom: 0.75rem; /* slightly smaller vertical gutter */
+    margin-bottom: 0.75rem;
   }
 
   .bot {
-    align-self: flex-start; /* still left‐aligned */
+    align-self: flex-start;
   }
   .user {
-    align-self: flex-end; /* still right‐aligned */
+    align-self: flex-end;
   }
 }
-
-/* ─── Grids & Cards ───────────────────────────────────────────────────── */
 
 .grid {
   display: flex;
@@ -303,8 +280,6 @@ section.show {
   width: 200px;
   height: 120px;
 }
-
-/* About grid: 3 cols × 2 rows */
 .about-grid {
   width: 90%;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -332,42 +307,30 @@ section.show {
 }
 
 /* ─── Base (desktop) behavior: show full 700×700 ────────────────── */
-/* ---------------------------------------------
-   1) Base styles: treat .game-embed as a 700×700 box
----------------------------------------------- */
+
 .game-embed {
-  width: 700px; /* “natural” width of your game */
-  height: 700px; /* “natural” height of your game */
-  margin: 0 auto; /* center on large screens */
+  width: 700px;
+  height: 700px;
+  margin: 0 auto;
   position: relative;
   overflow: hidden;
   justify-content: center;
 }
 
 .game-embed iframe {
-  /* Let the iframe “report” its content as 700×700. 
-     We will shrink it with transform, not by changing width/height here. */
   width: 700px;
   height: 700px;
   border: 0;
-  transform-origin: 0 0; /* pivot at top‐left so scaling stays flush */
+  transform-origin: 0 0;
 }
 
-/* ---------------------------------------------
-   2) On screens narrower than 700px, scale down 
-      the iframe so it exactly matches viewport width
----------------------------------------------- */
 @media (max-width: 700px) {
   .game-embed {
     justify-content: center;
-    width: 100vw; /* container stretches to full viewport width */
-    height: calc(
-      100vw
-    ); /* keep it square before scaling inside, so container always “holds” the right aspect ratio */
+    width: 100vw;
+    height: calc(100vw);
   }
   .game-embed iframe {
-    /* Compute scale as (viewport‐width ÷ 700px). 
-       For example, if viewport is 350px wide, scale = 350/700 = 0.5 */
     transform: scale(0.5);
   }
 }
@@ -375,7 +338,6 @@ section.show {
 /* ─── Overlay Container ─────────────────────────────────────────────────── */
 
 .project-detail {
-  /* Remove display:none; instead keep it in the DOM but hidden */
   position: fixed;
   top: 0;
   left: 0;
@@ -386,20 +348,16 @@ section.show {
   overflow-y: auto;
   padding: 2rem 1rem;
   box-sizing: border-box;
-
-  /* Start hidden */
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
 }
 
-/* When “.active” is added, fade in */
 .project-detail.active {
   opacity: 1;
   pointer-events: auto;
 }
 
-/* ─── Close Button (unchanged) ───────────────────────────────────────────── */
 .project-detail .close-btn {
   position: absolute;
   margin: 0.5%;
@@ -416,14 +374,10 @@ section.show {
   height: 100%;
 }
 
-/* ─── Main Content Container ────────────────────────────────────────────── */
-
-/* Wrap your actual card/container in an extra wrapper so we can animate it */
 .detail-container-wrapper {
   opacity: 0;
   transform: translateY(50px) scale(0.95);
   transition: opacity 0.35s ease-out 0.15s, transform 0.35s ease-out 0.15s;
-  /* delay a bit so backdrop fades first, then container animates */
 }
 
 .project-detail.active .detail-container-wrapper {
@@ -431,7 +385,6 @@ section.show {
   transform: translateY(0) scale(1);
 }
 
-/* The inner “detail-container” stays mostly the same */
 .detail-container {
   max-width: 1200px;
   margin: 4rem auto;
@@ -441,7 +394,6 @@ section.show {
   display: flex;
   flex-wrap: wrap;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  /* remove any animation/transition here; it’s handled by wrapper */
 }
 
 /* ─── Left Column ───────────────────────────────────────────────────────── */
@@ -500,7 +452,6 @@ section.show {
   text-decoration: underline;
 }
 
-/* Problem/Solution Sections */
 .detail-section {
   margin-bottom: 2rem;
 }
@@ -522,8 +473,6 @@ section.show {
   position: relative;
   background: #fff;
 }
-
-/* Make image cover entire right column */
 .detail-image {
   width: 100%;
   height: 100%;
@@ -559,27 +508,25 @@ section.show {
   font-weight: 600;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  pointer-events: none; /* so it never blocks clicks */
-  opacity: 0; /* hide by default */
-  transform: translate(-50%, -120%); /* shift it above+left of mouse */
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -120%);
   transition: opacity 0.15s ease;
   white-space: nowrap;
-  z-index: 2000; /* above everything else */
+  z-index: 2000;
 }
 
-/* When visible, we set opacity to 1 */
 #hover-cursor.visible,
 #hover-cursor2.visible {
   opacity: 1;
 }
 
-/* Example styling for your project cards */
 .project-card {
   position: relative;
-  cursor: none; /* Hide default pointer while hovering over the card */
+  cursor: none;
 }
 .flip-card {
-  cursor: none; /* Show pointer when hovering over the flip card */
+  cursor: none;
 }
 
 /* ─── ABOUT INTRO ─────────────────────────────────────────────────────────── */
@@ -587,7 +534,7 @@ section.show {
   max-width: 1100px;
   margin: 0 auto 3rem;
   text-align: center;
-  color: #f5f5f5; /* light on dark background, adjust if needed */
+  color: #f5f5f5;
 }
 .about-intro h1 {
   font-size: 2.5rem;
@@ -607,19 +554,17 @@ section.show {
   max-width: 900px;
   margin: 0 auto;
   padding-left: 2rem;
-  border-left: 3px solid #444; /* vertical line */
+  border-left: 3px solid #444;
 }
 
-/* Common styles for each timeline item */
 .timeline-item {
   position: relative;
   margin-bottom: 3rem;
 }
 
-/* The date on the left side */
 .timeline-date {
   position: absolute;
-  left: -14rem; /* shift left of the line */
+  left: -14rem;
   top: 0.7rem;
   width: 11rem;
   font-size: 0.9rem;
@@ -628,23 +573,20 @@ section.show {
   text-align: right;
 }
 
-/* The content box on the right */
 .timeline-content {
-  background: #222; /* or #333 */
+  background: #222;
   color: #f5f5f5;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Title within content */
 .timeline-content h2 {
   margin-top: 0;
   font-size: 1.3rem;
   color: #fff;
 }
 
-/* Subtitle (company + location) */
 .timeline-content h3 {
   margin: 0.25rem 0 1rem;
   font-size: 1rem;
@@ -652,7 +594,6 @@ section.show {
   color: #bbb;
 }
 
-/* Bullet list styling */
 .timeline-content ul {
   list-style: disc inside;
   margin: 0;
@@ -668,13 +609,13 @@ section.show {
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: -1.65rem; /* position at the left edge of .timeline-content */
+  left: -1.65rem;
   top: 0.8rem;
   width: 1rem;
   height: 1rem;
-  background: #4caf50; /* accent color dot */
+  background: #4caf50;
   border-radius: 50%;
-  border: 3px solid #222; /* same bg color to blend nicely */
+  border: 3px solid #222;
 }
 
 /* ─── RESPONSIVE ADJUSTMENTS ───────────────────────────────────────────── */
@@ -711,15 +652,12 @@ section.show {
 }
 
 /* ─── Container & Profile ─────────────────────────────────────────── */
-/* ─── Container holding everything ───────────────────────────────── */
-/* ── 1) Flip‐card container (does not clip its children) ───────── */
+
 #text-container {
   position: relative;
-  perspective: 800px; /* enable 3D for children */
+  perspective: 800px;
 }
 
-/* ── 2) Wrapper that holds front + back faces ──────────────────── */
-/* Desktop (or large screens) */
 .flip-card {
   position: absolute;
   top: 45%;
@@ -728,15 +666,12 @@ section.show {
   width: 400px;
   height: 500px;
 }
-
-/* Mobile (screens ≤ 600px): shrink the flip‐card */
 @media (max-width: 600px) {
   .flip-card {
-    width: 90vw; /* 80% of the viewport width */
-    height: calc(80vw * (500 / 400)); /* maintain the 400:500 aspect ratio */
+    width: 90vw;
+    height: calc(80vw * (500 / 400));
   }
 }
-
 /* ── 3) Inner 3D container ─────────────────────────────────────── */
 .flip-card-inner {
   position: relative;
@@ -791,20 +726,16 @@ section.show {
 
 /* ─── Each “Line” as a Clipping Window ───────────────────────────── */
 .line {
-  width: 100vw; /* Full viewport width */
-  height: 120px; /* Adjust vertical size as needed */
-  overflow: hidden; /* Clip anything outside */
-  white-space: nowrap; /* Keep text on one line */
+  width: 100vw;
+  height: 120px;
+  overflow: hidden;
+  white-space: nowrap;
   position: relative;
 }
 
-/* Inner wrapper that holds two copies side by side (set in JS) */
 .line-wrapper {
   display: inline-flex;
-  /* JavaScript will set width = 2 × one-span width */
 }
-
-/* ─── The “Item” We Clone & Animate ──────────────────────────────── */
 .line-item {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 600;
@@ -813,7 +744,6 @@ section.show {
   font-size: 100px;
   color: antiquewhite;
   padding: 10px 0;
-  /* No margins here! Otherwise you'll introduce a gap at wrap. */
 }
 
 /* ─── Opacity Per Line ───────────────────────────────────────────── */
@@ -849,25 +779,25 @@ section.show {
 }
 
 .contact-list {
-  list-style: none; /* remove bullets */
+  list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .contact-list li {
-  margin: 0.5rem 0; /* spacing between items */
+  margin: 0.5rem 0;
 }
 
 .contact-list a {
   text-decoration: none;
-  color: #ffffff; /* for example, LinkedIn-blue; change as desired */
+  color: #ffffff;
   font-weight: bold;
   font-size: 1.1rem;
   transition: color 0.2s ease;
 }
 
 .contact-list a:hover {
-  color: #cacaca; /* darker shade on hover */
+  color: #cacaca;
 }
 html {
   scroll-behavior: smooth;
@@ -876,21 +806,26 @@ section {
   scroll-margin-top: calc(2rem + 2.5rem);
 }
 
-/* Shrink only the ticker‐item in the top bar on mobile */
 @media (max-width: 768px) {
   #top-bar #ticker .ticker-item {
-    font-size: 0.8rem; /* adjust as needed (0.8rem ≈ 13px) */
-    line-height: 1.5rem; /* keep it centered inside the bar */
-    padding-left: 0.5rem; /* match your existing mobile padding */
-    padding-bottom: 0.5rem; /* add some bottom padding for better centering */
-    margin-bottom: 0.5rem; /* ensure it doesn't overflow vertically */
+    font-size: 0.8rem;
+    line-height: 1.5rem;
+    padding-left: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 }
 
 @media (max-width: 600px) {
   #top-bar #ticker .ticker-item {
-    font-size: 0.6rem; /* even smaller on very small phones */
+    font-size: 0.6rem;
     line-height: 1.2rem;
     padding-left: 0.4rem;
   }
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
