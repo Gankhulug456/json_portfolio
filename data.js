@@ -6,7 +6,7 @@ const projects = [
     meta: {
       Industry: "3D Printing / E-Commerce",
       Published: "©2025",
-      "Live Site": `<a href="https://polymaker.com" target="_blank">polymaker.com</a>`,
+      "Live Sites": `<a href="https://polymaker.com" target="_blank">polymaker.com</a> • <a href="https://fiberon.polymaker.com" target="_blank">fiberon.polymaker.com</a> • <a href="http://panchroma.polymaker.com/" target="_blank">panchroma.polymaker.com</a>`,
       Deliverables: "JavaScript/HTML/CSS, Custom Web Apps",
     },
     sections: [
@@ -27,41 +27,82 @@ const projects = [
 
   {
     key: "legal_contract-analyzer",
-    title: "Legal Contract Analyzer",
+    title: "On-Device Legal Contract Analyzer",
     subtitle: "Hackathon Winning On-Device AI Tool",
     meta: {
       Industry: "Legal Tech",
       Published: "December 2024",
       Github: `<a href="https://github.com/Gankhulug456/Qualcomm-Hackathon" target="_blank">Visit on Github</a>`,
-      Hackathon: "Qualcomm Snapdragon × LM Studio AI Builder (1st Place)",
-      Deliverables: "FastAPI Backend, Jinja2 UI, OpenAI Python SDK Integration",
+      Award: "1st Place – On-Device AI Builders Hackathon (Qualcomm × Microsoft × LM Studio)",
+      "Official Blog": `<a href="https://www.qualcomm.com/developer/blog/2024/12/on-device-ai-builders-hackathon-qualcomm-lmstudio-microsoft" target="_blank">Qualcomm Developer Blog</a>`,
+      "Q&A Video": `<a href="https://www.youtube.com/watch?v=v513FoIXxWk" target="_blank">YouTube Q&A with Qualcomm</a>`,
+      Deliverables: "Python, LM Studio, Llama 3.1, ONNX Runtime, Local LLMs",
     },
     sections: [
       {
         heading: "Overview",
-        text: "A secure, offline application that automates legal-document analysis covering contract review, case simulation, and IP management, while ensuring complete data privacy by running entirely on-device. Originally developed for the Qualcomm Snapdragon × LM Studio On-Device AI Builder Hackathon (where it won first place), it leverages the Snapdragon X Elite’s NPUs to deliver fast, reliable risk assessments and document summaries without ever sending data to the cloud.",
+        text: "Developed an on-device legal document analyzer using LM Studio, Llama 3.1, and ONNX Runtime with 92% accuracy, winning 1st place at the On-Device AI Builders Hackathon (Qualcomm × Microsoft × LM Studio). Built a privacy-first AI agent to classify contract risk on-device, eliminating cloud dependency. Optimized inference pipelines to <200 ms per document (10x faster than baseline).",
       },
       {
         heading: "Key Features",
         text:
-          "• Clause Extraction & Risk Analysis: Automatically breaks documents into numbered clauses, sends each clause through the OpenAI SDK for risk-level evaluation, and computes an overall risk score based on weighted legal keywords.\n\n" +
-          "• Document Summarization: Generates a concise, examples-driven summary of the entire contract, highlighting which party benefits most.\n\n" +
-          "• Multi-Format Parsing: Reads DOCX (via python-docx), PDF (via PyPDF2), and plain-text files natively.\n\n" +
-          "• On-Device Privacy: Everything runs locally, no external calls beyond the on-device AI endpoint—ensuring sensitive legal data never leaves the machine.",
+          "• On-Device AI Processing: Leverages LM Studio and Llama 3.1 for local inference, ensuring complete data privacy with no cloud dependency.\n\n" +
+          "• High Accuracy: Achieved 92% accuracy in contract risk classification and analysis.\n\n" +
+          "• Optimized Performance: Inference pipelines optimized to <200 ms per document, 10x faster than baseline implementations.\n\n" +
+          "• Privacy-First Design: All processing happens on-device using ONNX Runtime, ensuring sensitive legal data never leaves the machine.",
       },
       {
         heading: "Tech Stack",
         text:
-          "• Backend: FastAPI (endpoints, file upload)\n\n" +
-          "• Templating: Jinja2 for a minimal frontend UI\n\n" +
-          "• AI Integration: OpenAI Python SDK for clause- and document-level analysis\n\n" +
-          "• Parsing: python-docx (DOCX), PyPDF2 (PDF), built-in text handling for plain-text\n\n" +
-          "• Configuration: python-dotenv for loading API keys and model IDs\n\n" +
-          "• Runtime: Uvicorn (ASGI server)\n\n" +
-          "Skills Demonstrated: Artificial Intelligence, Python, Web Applications, AI Software Development, On-Device ML Integration.",
+          "• AI/ML: LM Studio, Llama 3.1, ONNX Runtime, Local LLMs\n\n" +
+          "• Language: Python\n\n" +
+          "• Optimization: ONNX Runtime for efficient model inference\n\n" +
+          "Skills Demonstrated: On-Device AI, Local LLMs, Python, ONNX Runtime, Privacy-Preserving AI, Model Optimization.",
       },
     ],
     image: ["assets_mac/qcom.png", "assets_mac/qcom1.png"],
+  },
+  {
+    key: "nomadly",
+    title: "Nomadly",
+    subtitle: "AI-Powered Job Matching Platform",
+    meta: {
+      Industry: "Job Matching / AI",
+      Published: "2024",
+      "Live Site": `<a href="https://intern.nomadli.app" target="_blank">intern.nomadli.app</a>`,
+      Tech: "React, Next.js, Firebase/Firestore, Python, Vector Embeddings, RAG, Node.js",
+      Deliverables: "Full-Stack Application with AI Integration",
+    },
+    sections: [
+      {
+        heading: "Overview",
+        text: "Built an AI-powered job matching platform using RAG (Retrieval-Augmented Generation) with vector embeddings and cosine similarity, delivering personalized job recommendations. Developed a scalable multi-role application with secure Firestore rules and application tracking, serving students, organizations, and administrators.",
+      },
+      {
+        heading: "Key Features",
+        text:
+          "• AI-Powered Matching: Implemented RAG with vector embeddings and cosine similarity to provide personalized job recommendations based on user profiles and preferences.\n\n" +
+          "• Multi-Role System: Built a comprehensive platform supporting three distinct user roles—students, organizations, and administrators—each with tailored functionality and permissions.\n\n" +
+          "• Secure Data Management: Implemented secure Firestore rules to ensure proper access control and data protection across all user roles.\n\n" +
+          "• Application Tracking: Developed a complete application tracking system allowing users to monitor their job application status and history.",
+      },
+      {
+        heading: "Tech Stack",
+        text:
+          "• Frontend: React, Next.js\n\n" +
+          "• Backend: Node.js, Python\n\n" +
+          "• Database: Firebase/Firestore\n\n" +
+          "• AI/ML: Vector Embeddings, RAG (Retrieval-Augmented Generation), Cosine Similarity\n\n" +
+          "Skills Demonstrated: Full-Stack Development, React, Next.js, Firebase, Vector Databases, RAG, AI/ML Integration, Multi-Role Applications.",
+      },
+    ],
+    image: [
+      "assets_mac/Nomadly/Promo.png",
+      "assets_mac/Nomadly/Nomadly Promo Professional Phone Mockup.png",
+      "assets_mac/Nomadly/1.png",
+      "assets_mac/Nomadly/2.png",
+      "assets_mac/Nomadly/3.png",
+    ],
   },
 
   {

@@ -24,6 +24,25 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     obs.observe(sec);
   });
+
+  // Animate timeline items on scroll
+  const timelineItems = document.querySelectorAll(".timeline-item");
+  const timelineObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add("show");
+          }, index * 150); // Stagger animation
+        }
+      });
+    },
+    { threshold: 0.2, rootMargin: "0px 0px -50px 0px" }
+  );
+
+  timelineItems.forEach((item) => {
+    timelineObserver.observe(item);
+  });
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -37,54 +56,116 @@ document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
 
   cards.forEach((card) => {
-    card.addEventListener("click", () => {
+    card.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       const projectKey = card.getAttribute("data-project");
-      if (!projectKey) return;
+      if (!projectKey) {
+        console.warn("No project key found for card:", card);
+        return;
+      }
       const proj = projects.find((p) => p.key === projectKey);
-      if (!proj) return;
-      let leftHTML = "";
-      leftHTML += `<h1 class="detail-title">${proj.title}</h1>`;
-      leftHTML += `<p class="detail-subtitle">${proj.subtitle}</p>`;
-      leftHTML += `<div class="detail-meta">`;
+      if (!proj) {
+        console.warn("Project not found for key:", projectKey);
+        return;
+      }
+      
+      const detailContainer = detailOverlayWrapper.querySelector(".detail-container");
+      if (!detailContainer) {
+        console.error("Detail container not found");
+        return;
+      }
+      
+      // Build complete HTML structure
+      let fullHTML = "";
+      
+      // Close button
+      fullHTML += `<button class="close-btn">
+                     <img src="assets_mac/icons8-macos-minimize-60.png" alt="Close" />
+                   </button>`;
+      
+      // Header section
+      fullHTML += `<div class="detail-header">`;
+      fullHTML += `<h1 class="detail-title">${proj.title}</h1>`;
+      fullHTML += `<p class="detail-subtitle">${proj.subtitle}</p>`;
+      fullHTML += `<div class="detail-meta">`;
       for (const [label, value] of Object.entries(proj.meta)) {
-        leftHTML += `
+        fullHTML += `
           <div class="meta-row">
             <span class="meta-label">${label}</span>
             <span class="meta-value">${value}</span>
           </div>`;
       }
-      leftHTML += `</div>`;
+      fullHTML += `</div>`;
+      fullHTML += `</div>`;
 
+      // Content wrapper
+      fullHTML += `<div class="detail-content-wrapper">`;
+      
+      // Left column - Content
+      fullHTML += `<div class="detail-left">`;
       proj.sections.forEach((sec) => {
-        leftHTML += `<div class="detail-section">
+        fullHTML += `<div class="detail-section">
                        <h2>${sec.heading}</h2>
                        <p>${sec.text.replace(/\n/g, "<br />")}</p>
                      </div>`;
       });
+      fullHTML += `</div>`;
 
-      let rightHTML = "";
-
+      // Right column - Images
+      fullHTML += `<div class="detail-right">`;
       if (Array.isArray(proj.image)) {
-        rightHTML += `<div class="image-gallery">`;
-        proj.image.forEach((url) => {
-          rightHTML += `<img src="${url}" alt="${proj.title} image" class="detail-image" />`;
+        fullHTML += `<div class="image-carousel-container">`;
+        fullHTML += `<div class="image-carousel" data-carousel-id="${projectKey}">`;
+        proj.image.forEach((url, index) => {
+          fullHTML += `<div class="carousel-slide ${index === 0 ? 'active' : ''}" data-slide-index="${index}">`;
+          fullHTML += `<img src="${url}" alt="${proj.title} image ${index + 1}" class="detail-image" />`;
+          fullHTML += `</div>`;
         });
-        rightHTML += `</div>`;
+        fullHTML += `</div>`;
+        if (proj.image.length > 1) {
+          fullHTML += `<button class="carousel-btn carousel-prev" aria-label="Previous image">‹</button>`;
+          fullHTML += `<button class="carousel-btn carousel-next" aria-label="Next image">›</button>`;
+          fullHTML += `<div class="carousel-dots-container">`;
+          fullHTML += `<div class="carousel-dots">`;
+          proj.image.forEach((_, index) => {
+            fullHTML += `<button class="carousel-dot ${index === 0 ? 'active' : ''}" data-slide-index="${index}" aria-label="Go to image ${index + 1}"></button>`;
+          });
+          fullHTML += `</div>`;
+          fullHTML += `</div>`;
+        }
+        fullHTML += `</div>`;
       } else {
-        rightHTML = `<img src="${proj.image}" alt="${proj.title} Mockup" class="detail-image" />`;
+        fullHTML += `<img src="${proj.image}" alt="${proj.title} Mockup" class="detail-image" />`;
       }
-      overlayLeft.innerHTML = leftHTML;
-      overlayRight.innerHTML = rightHTML;
+      fullHTML += `</div>`;
+      fullHTML += `</div>`;
+      
+      // Replace entire container content
+      detailContainer.innerHTML = fullHTML;
+      
+      // Re-attach close button event listener
+      const newCloseBtn = detailContainer.querySelector(".close-btn");
+      if (newCloseBtn) {
+        newCloseBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          detailOverlay.classList.remove("active");
+          body.classList.remove("detail-open");
+        }, { once: false });
+      }
+      
+      // Initialize carousel if it exists
+      if (Array.isArray(proj.image) && proj.image.length > 1) {
+        initCarousel(projectKey, proj.image.length);
+      }
+      
       detailOverlay.classList.add("active");
       body.classList.add("detail-open");
     });
   });
-  const closeBtn = detailOverlay.querySelector(".close-btn");
-  closeBtn.addEventListener("click", () => {
-    detailOverlay.classList.remove("active");
-    body.classList.remove("detail-open");
-  });
-
+  
+  // Handle overlay background click to close
   detailOverlay.addEventListener("click", (e) => {
     if (e.target === detailOverlay || e.target === detailOverlayWrapper) {
       detailOverlay.classList.remove("active");
@@ -92,6 +173,75 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// Carousel functionality
+function initCarousel(carouselId, totalSlides) {
+  const carousel = document.querySelector(`[data-carousel-id="${carouselId}"]`);
+  if (!carousel) return;
+  
+  let currentSlide = 0;
+  const slides = carousel.querySelectorAll('.carousel-slide');
+  const container = carousel.closest('.image-carousel-container');
+  const dots = container ? container.querySelectorAll('.carousel-dot') : [];
+  const prevBtn = container ? container.querySelector('.carousel-prev') : null;
+  const nextBtn = container ? container.querySelector('.carousel-next') : null;
+  
+  function showSlide(index) {
+    // Remove active class from all slides and dots
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      if (dots[i]) dots[i].classList.remove('active');
+    });
+    
+    // Add active class to current slide and dot
+    slides[index].classList.add('active');
+    if (dots[index]) dots[index].classList.add('active');
+    
+    currentSlide = index;
+  }
+  
+  function nextSlide() {
+    const next = (currentSlide + 1) % totalSlides;
+    showSlide(next);
+  }
+  
+  function prevSlide() {
+    const prev = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(prev);
+  }
+  
+  // Event listeners
+  if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+  if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+  
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => showSlide(index));
+  });
+  
+  // Keyboard navigation
+  carousel.parentElement.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') prevSlide();
+    if (e.key === 'ArrowRight') nextSlide();
+  });
+  
+  // Touch/swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  carousel.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+  
+  carousel.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+  
+  function handleSwipe() {
+    if (touchEndX < touchStartX - 50) nextSlide();
+    if (touchEndX > touchStartX + 50) prevSlide();
+  }
+}
 function debounce(fn, delay) {
   let timer;
   return () => {
