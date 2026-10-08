@@ -1,3 +1,6 @@
+// Shared smooth-scroll target (set by initSmoothScroll)
+window.__smoothScrollTo = null;
+
 function scrollToSection(id) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -5,42 +8,177 @@ function scrollToSection(id) {
   const navBarHeight = document.querySelector("nav")?.offsetHeight || 0;
   const headerHeight = topBarHeight + navBarHeight;
   const elY = el.getBoundingClientRect().top + window.pageYOffset;
-  const scrollToY = elY - headerHeight;
-  window.scrollTo({
-    top: scrollToY,
-    behavior: "smooth",
-  });
+  const scrollToY = Math.max(0, elY - headerHeight);
+  if (typeof window.__smoothScrollTo === "function") {
+    window.__smoothScrollTo(scrollToY);
+  } else {
+    window.scrollTo({ top: scrollToY, behavior: "smooth" });
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
-  const threshold = isMobile ? 0.2 : 0.5;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const isTouch = matchMedia("(pointer: coarse)").matches;
+  if (reduceMotion || isTouch) return;
+
+  document.documentElement.classList.add("has-smooth-scroll");
+
+  let current = window.scrollY;
+  let target = window.scrollY;
+  let running = false;
+  const ease = 0.075; // lower = slower / creamier
+  const wheelScale = 0.42; // damp wheel speed
+
+  const maxScroll = () =>
+    Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+
+  const clamp = (y) => Math.max(0, Math.min(y, maxScroll()));
+
+  function tick() {
+    const diff = target - current;
+    if (Math.abs(diff) < 0.2) {
+      current = target;
+      window.scrollTo(0, current);
+      running = false;
+      return;
+    }
+    current += diff * ease;
+    window.scrollTo(0, current);
+    requestAnimationFrame(tick);
+  }
+
+  function start() {
+    if (!running) {
+      running = true;
+      requestAnimationFrame(tick);
+    }
+  }
+
+  window.__smoothScrollTo = (y) => {
+    target = clamp(y);
+    start();
+  };
+
+  window.addEventListener(
+    "wheel",
+    (e) => {
+      // Don't steal scroll inside project detail or active game
+      if (document.body.classList.contains("detail-open")) return;
+      if (e.target.closest?.(".game-embed.is-active")) return;
+
+      e.preventDefault();
+      target = clamp(target + e.deltaY * wheelScale);
+      start();
+    },
+    { passive: false }
+  );
+
+  // Keep in sync if user drags scrollbar / uses keyboard
+  let syncing = false;
+  window.addEventListener("scroll", () => {
+    if (running) return;
+    if (syncing) return;
+    current = window.scrollY;
+    target = current;
+  });
+
+  window.addEventListener("keydown", (e) => {
+    const keys = ["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "];
+    if (!keys.includes(e.key)) return;
+    if (document.body.classList.contains("detail-open")) return;
+
+    e.preventDefault();
+    const page = window.innerHeight * 0.75;
+    if (e.key === "ArrowDown" || e.key === " ") target = clamp(target + page * 0.35);
+    if (e.key === "ArrowUp") target = clamp(target - page * 0.35);
+    if (e.key === "PageDown") target = clamp(target + page * 0.55);
+    if (e.key === "PageUp") target = clamp(target - page * 0.55);
+    if (e.key === "Home") target = 0;
+    if (e.key === "End") target = maxScroll();
+    start();
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hero = document.getElementById("hero");
+  if (hero) {
+    const updateHeroScroll = () => {
+      const fadeStart = window.innerHeight * 0.08;
+      const scrolled = window.scrollY > fadeStart;
+      hero.classList.toggle("is-scrolled", scrolled);
+    };
+    updateHeroScroll();
+    window.addEventListener("scroll", updateHeroScroll, { passive: true });
+  }
+
+  const gameEmbed = document.getElementById("game-embed");
+  const gameActivate = document.getElementById("game-activate");
+  if (!gameEmbed || !gameActivate) return;
+
+  gameActivate.addEventListener("click", () => {
+    gameEmbed.classList.add("is-active");
+  });
+
+  // Deactivate when game leaves view so scroll isn't trapped again later
+  const gameObs = new IntersectionObserver(
+    ([entry]) => {
+      if (!entry.isIntersecting) {
+        gameEmbed.classList.remove("is-active");
+      }
+    },
+    { threshold: 0.15 }
+  );
+  gameObs.observe(gameEmbed);
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Reveal sections with a real entrance — wait until they're clearly in view
   document.querySelectorAll("section").forEach((sec) => {
+    if (reduceMotion) {
+      sec.classList.add("show");
+      return;
+    }
+    // Hero + footer: always visible (hero is the first viewport)
+    if (sec.id === "hero" || sec.id === "footer") {
+      sec.classList.add("show");
+      return;
+    }
+    const isChat = sec.classList.contains("chat-beat");
     const obs = new IntersectionObserver(
       ([entry]) => {
-        sec.classList.toggle("show", entry.isIntersecting);
+        if (entry.isIntersecting) {
+          // slight beat so it feels timed, not "just scrolled into"
+          requestAnimationFrame(() => {
+            sec.classList.add("show");
+          });
+          obs.unobserve(sec);
+        }
       },
-      { threshold: threshold }
+      isChat
+        ? { threshold: 0.4, rootMargin: "0px 0px -12% 0px" }
+        : { threshold: 0.22, rootMargin: "0px 0px -12% 0px" }
     );
     obs.observe(sec);
   });
 
-  // Animate timeline items on scroll
+  // Animate timeline items once on scroll
   const timelineItems = document.querySelectorAll(".timeline-item");
-  const timelineObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry, index) => {
+  timelineItems.forEach((item, i) => {
+    if (reduceMotion) {
+      item.classList.add("show");
+      return;
+    }
+    const timelineObserver = new IntersectionObserver(
+      ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add("show");
-          }, index * 150); // Stagger animation
+          setTimeout(() => item.classList.add("show"), Math.min(i, 4) * 80);
+          timelineObserver.unobserve(item);
         }
-      });
-    },
-    { threshold: 0.2, rootMargin: "0px 0px -50px 0px" }
-  );
-
-  timelineItems.forEach((item) => {
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -5% 0px" }
+    );
     timelineObserver.observe(item);
   });
 });
@@ -143,33 +281,45 @@ document.addEventListener("DOMContentLoaded", () => {
       
       // Replace entire container content
       detailContainer.innerHTML = fullHTML;
-      
-      // Re-attach close button event listener
+      detailOverlay.scrollTop = 0;
+
+      const closeDetail = () => {
+        detailOverlay.classList.remove("active");
+        body.classList.remove("detail-open");
+      };
+
       const newCloseBtn = detailContainer.querySelector(".close-btn");
       if (newCloseBtn) {
         newCloseBtn.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
-          detailOverlay.classList.remove("active");
-          body.classList.remove("detail-open");
-        }, { once: false });
+          closeDetail();
+        });
       }
-      
-      // Initialize carousel if it exists
+
       if (Array.isArray(proj.image) && proj.image.length > 1) {
         initCarousel(projectKey, proj.image.length);
       }
-      
+
       detailOverlay.classList.add("active");
       body.classList.add("detail-open");
     });
   });
-  
-  // Handle overlay background click to close
+
+  const closeDetailOverlay = () => {
+    detailOverlay.classList.remove("active");
+    body.classList.remove("detail-open");
+  };
+
   detailOverlay.addEventListener("click", (e) => {
     if (e.target === detailOverlay || e.target === detailOverlayWrapper) {
-      detailOverlay.classList.remove("active");
-      body.classList.remove("detail-open");
+      closeDetailOverlay();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && detailOverlay.classList.contains("active")) {
+      closeDetailOverlay();
     }
   });
 });

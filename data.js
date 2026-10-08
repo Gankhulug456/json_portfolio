@@ -5,9 +5,10 @@ const projects = [
     subtitle: "Interactive Web Applications",
     meta: {
       Industry: "3D Printing / E-Commerce",
-      Published: "©2025",
+      Role: "Software & Web Developer Intern · Remote",
+      Published: "©2024–Present",
       "Live Sites": `<a href="https://polymaker.com" target="_blank">polymaker.com</a> • <a href="https://fiberon.polymaker.com" target="_blank">fiberon.polymaker.com</a> • <a href="http://panchroma.polymaker.com/" target="_blank">panchroma.polymaker.com</a>`,
-      Deliverables: "JavaScript/HTML/CSS, Custom Web Apps",
+      Deliverables: "JavaScript/HTML/CSS, Custom Web Apps, 3D Visualization",
     },
     sections: [
       {
@@ -22,6 +23,78 @@ const projects = [
     image: [
       "assets_mac/color_app_la2-min.png",
       "assets_mac/mat_com_lap1-min.png",
+    ],
+  },
+
+  {
+    key: "treedoctor",
+    title: "TreeDoctor",
+    subtitle: "School Tree Care Platform · Mongolia",
+    meta: {
+      Industry: "EdTech / Environmental",
+      Role: "Developer",
+      "Live Site": `<a href="https://treedoctor.mn" target="_blank">treedoctor.mn</a>`,
+      Highlight: "Presented at UNCCD COP17 · Ulaanbaatar, Aug 2026",
+      Focus: "Students · Teachers · Nationwide school tree care",
+      Deliverables: "Web Platform, Dashboards, Growth Tracking",
+    },
+    sections: [
+      {
+        heading: "Overview",
+        text: "TreeDoctor is a school tree care platform for Mongolia — helping students, teachers, and schools track tree growth, watering, and health in one place. Built for real classroom use across aimags nationwide.",
+      },
+      {
+        heading: "What it does",
+        text:
+          "• Personal tree logs for students — growth, photos, watering, and health records (up to 3 trees).\n\n" +
+          "• Teacher dashboard — class progress, news posts, and Excel export.\n\n" +
+          "• Impact layer — aimag map coverage and achievements that encourage consistent care.",
+      },
+      {
+        heading: "UNCCD COP17",
+        text: "TreeDoctor attended and presented at UNCCD COP17 in Ulaanbaatar, Mongolia (August 2026) — the United Nations Convention to Combat Desertification. Showcased the platform in climate, land, and technology conversations at the global conference, connecting school-level tree care to broader environmental action.",
+      },
+    ],
+    image: [
+      "assets_mac/TreeDoctor/promo.jpg",
+      "assets_mac/TreeDoctor/hero.png",
+      "assets_mac/TreeDoctor/logo.png",
+    ],
+  },
+
+  {
+    key: "afta",
+    title: "AFTA Platforms",
+    subtitle: "Freelance · Internal Tools & Platforms",
+    meta: {
+      Industry: "Retail / Enterprise Tools",
+      Role: "Freelance Developer · 2025–Present",
+      Client: "AFTA LLC",
+      "App Store": `<a href="https://apps.apple.com/us/app/afta-printer/id6792237470" target="_blank">AFTA Printer</a>`,
+      Deliverables: "iOS App, Internal Web Platforms, Bluetooth Printing",
+    },
+    sections: [
+      {
+        heading: "AFTA Printer (iOS)",
+        text:
+          "Built and shipped AFTA Printer — an internal iPhone app for AFTA retail staff to print product price labels quickly and accurately. Available on the App Store.\n\n" +
+          "• Sign in with company Odoo ERP accounts\n\n" +
+          "• Browse and search the live product catalog (prices & barcodes)\n\n" +
+          "• Connect to Bluetooth thermal label printers\n\n" +
+          "• Print single labels or batches\n\n" +
+          "• On-the-go price checks and payroll views for authorized staff\n\n" +
+          "Mongolian-language interface, designed for real store-floor use.",
+      },
+      {
+        heading: "Internal Platforms",
+        text: "Building and maintaining additional internal web platforms across AFTA operations — frontend interfaces, UX refinements, deployment, and ongoing product improvements.",
+      },
+    ],
+    image: [
+      "assets_mac/AFTA/afta-platforms.svg",
+      "assets_mac/AFTA/printer-app.svg",
+      "assets_mac/AFTA/printer-screen-1.jpg",
+      "assets_mac/AFTA/printer-screen-2.jpg",
     ],
   },
 

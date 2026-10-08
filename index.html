@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
-    <title>Ganaa | Works & About</title>
+    <title>Ganaa Bayaraa | Creative Technologist</title>
     <script type="importmap">
       {
         "imports": {
@@ -47,7 +47,7 @@
       <div id="ticker">
         <div class="ticker-wrapper">
           <span class="ticker-item">
-            JavaScript • Python • Java • C • C++ • TypeScript • Node.js • React • Next.js • HTML • CSS • REST APIs • GraphQL • CUDA • MPI • OpenMP • POSIX Threads • Vector Databases • RAG • OpenAI API • Local LLMs • ONNX Runtime • NumPy • Pandas • Docker • Git • Linux • Three.js • Blender • WordPress • FastAPI
+            Extended Reality • Computer Vision • Imaging • Photonics • Creative Technology • JavaScript • Python • TypeScript • React • Next.js • Three.js • Canvas • D3.js • Node.js • C • C++ • Local LLMs • ONNX Runtime • RAG • WordPress • Blender • Docker • Git • Linux
           </span>
         </div>
       </div>
@@ -55,23 +55,35 @@
 
     <nav>
       <a href="#work-text">WORK</a>
-      <a href="#about">ABOUT</a>
       <a href="#experience">EXPERIENCE</a>
+      <a href="#youtube">YOUTUBE</a>
+      <a href="#about">ABOUT</a>
       <a href="#contact">CONNECT</a>
     </nav>
-    <div id="canvas-container">
-      <script type="module" defer src="three.js"></script>
-    </div>
-    <section id="chat1-messages" class="chat-window">
-      <div class="message bot">
-        Cool, right? I just couldn't resist dropping this on my site.<br />
-        Ready to see what else I build?
+    <section id="hero" class="hero-stage">
+      <div id="canvas-container">
+        <script type="module" defer src="three.js"></script>
       </div>
+      <div id="intro" class="hero-identity" aria-label="Introduction">
+        <p class="hero-name">Ganaa<br />Bayaraa</p>
+        <p class="hero-roles">Creative Technologist · Developer · XR Builder</p>
+        <p class="hero-tagline">
+          Somewhere between code, creativity, and
+          figuring life out.
+        </p>
+      </div>
+      <p class="hero-scroll-hint" aria-hidden="true">Scroll</p>
     </section>
-    <section id="chat1-actions" class="chat-window">
-      <button class="message user" onclick="scrollToSection('work-text')">
-        Show me your projects →
-      </button>
+    <section class="chat-beat" id="chat1">
+      <div class="chat-thread">
+        <div class="message bot">
+          Cool, right? I just couldn't resist dropping this on my site.<br />
+          Ready to see what else I build?
+        </div>
+        <button class="message user" onclick="scrollToSection('work-text')">
+          Show me your projects →
+        </button>
+      </div>
     </section>
 
     <section id="work-text">
@@ -81,11 +93,29 @@
         <div class="project-card" data-project="polymaker">
           <img
             src="assets_mac/mat_com_lap1-min.png"
-            alt="Project 1"
+            alt="Polymaker interactive web apps"
             class="placeholder"
           />
-          <h2>Polymaker Website</h2>
-          <p>Interactive Web Applications</p>
+          <h2>Polymaker</h2>
+          <p>Interactive Web · Product Visualization</p>
+        </div>
+        <div class="project-card" data-project="treedoctor">
+          <img
+            src="assets_mac/TreeDoctor/promo.jpg"
+            alt="TreeDoctor school tree care platform"
+            class="placeholder"
+          />
+          <h2>TreeDoctor</h2>
+          <p>School Tree Care · Presented at COP17</p>
+        </div>
+        <div class="project-card" data-project="afta">
+          <img
+            src="assets_mac/AFTA/afta-platforms.svg"
+            alt="AFTA Platforms freelance work"
+            class="placeholder"
+          />
+          <h2>AFTA Platforms</h2>
+          <p>AFTA Printer · Internal Tools</p>
         </div>
         <div class="project-card" data-project="nomadly">
           <img
@@ -97,58 +127,53 @@
           <p>AI-Powered Job Matching Platform</p>
         </div>
         <div class="project-card" data-project="legal_contract-analyzer">
-          <img src="assets_mac/qcom.png" alt="Project 1" class="placeholder" />
+          <img src="assets_mac/qcom.png" alt="Legal Contract Analyzer" class="placeholder" />
           <h2>Legal Contract Analyzer</h2>
           <p>Hackathon Winning Project</p>
-        </div>
-        <div class="project-card" data-project="personnel_manager_bst">
-          <img
-            src="assets_mac/Preview.png"
-            alt="Project 1"
-            class="placeholder"
-          />
-          <h2>Personnel Manager</h2>
-          <p>Binary Search Tree-Based Personnel Record System</p>
         </div>
       </div>
     </section>
 
-    <!-- Chat CTA #2 -->
-    <section id="chat2-messages" class="chat-window">
-      <div class="message bot">
-        I also make games and maybe you want to play one?
+    <section class="chat-beat" id="chat2">
+      <div class="chat-thread">
+        <div class="message bot">
+          I also make games and maybe you want to play one?
+        </div>
+        <button class="message user" onclick="scrollToSection('game-text')">
+          Play the game →
+        </button>
       </div>
-    </section>
-    <section id="chat2-actions" class="chat-window">
-      <button class="message user" onclick="scrollToSection('game-text')">
-        Play the game →
-      </button>
     </section>
 
     <!-- Game Embed -->
     <section id="game-text">
       <h1>Game Project</h1>
-      <div class="game-embed">
+      <div class="game-embed" id="game-embed">
         <iframe
+          id="game-iframe"
           src="gamemaker_html/index.html"
-          frameborder="0"
+          title="Game project"
+          loading="lazy"
           allowfullscreen
         ></iframe>
+        <button type="button" class="game-activate" id="game-activate">
+          Click to play
+          <span>Page scroll works until you start</span>
+        </button>
       </div>
     </section>
 
-    <!-- Pre-hardware chat CTA -->
-    <section id="pre-hardware-messages" class="chat-window">
-      <div class="message bot">
-        You've seen my games and magic.<br />
-        But did you ever wonder what happens inside a CPU or how to talk to
-        real-world sensors?
+    <section class="chat-beat" id="pre-hardware">
+      <div class="chat-thread">
+        <div class="message bot">
+          You've seen my games and magic.<br />
+          But did you ever wonder what happens inside a CPU or how to talk to
+          real-world sensors?
+        </div>
+        <button class="message user" onclick="scrollToSection('hardware')">
+          Show me your hardware →
+        </button>
       </div>
-    </section>
-    <section id="pre-hardware-actions" class="chat-window">
-      <button class="message user" onclick="scrollToSection('hardware')">
-        Show me your hardware →
-      </button>
     </section>
 
     <!-- Hardware & Systems Section -->
@@ -186,17 +211,357 @@
       </div>
     </section>
 
-    <!-- Chat CTA #4 -->
-    <section id="chat4-messages" class="chat-window">
-      <div class="message bot">
-        That's a peek at my tech playground.<br />
-        Want to see my experience and achievements?
+    <section class="chat-beat" id="chat4">
+      <div class="chat-thread">
+        <div class="message bot">
+          That's a peek at my tech playground.<br />
+          Want to see where I've been building — and studying?
+        </div>
+        <button class="message user" onclick="scrollToSection('experience')">
+          Show me your experience →
+        </button>
       </div>
     </section>
-    <section id="chat4-actions" class="chat-window">
-      <button class="message user" onclick="scrollToSection('experience')">
-        Show me your experience →
-      </button>
+
+    <section id="experience" class="timeline-section">
+      <h1>EXPERIENCE</h1>
+      <div class="timeline-container">
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-line"></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-date-badge">Apr 2024 – Present</div>
+            <div class="timeline-content">
+              <h2>Software & Web Developer Intern</h2>
+              <h3>Polymaker · Remote</h3>
+              <ul>
+                <li>
+                  Developed and maintained interactive web experiences across Polymaker's global websites and applications.
+                </li>
+                <li>
+                  Built Python-based Amazon listing/data extraction tools, reducing manual data-processing work by ~50%.
+                </li>
+                <li>
+                  Developed interactive graphics and product experiences using JavaScript, Canvas, D3.js, and 3D technologies.
+                </li>
+                <li>
+                  Built and improved interactive applications for Panchroma and Fiberon, including 3D/product visualization features.
+                </li>
+                <li>
+                  Developed WordPress components and optimized website UX/performance, contributing to ~25% faster page loads.
+                </li>
+                <li>
+                  Monitored and improved frontend performance, addressing JavaScript errors, Core Web Vitals, and interaction latency.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-line"></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-date-badge">2025 – Present</div>
+            <div class="timeline-content">
+              <h2>Freelance Developer / Creative Technologist</h2>
+              <h3>AFTA LLC · Client Work</h3>
+              <ul>
+                <li>
+                  <strong>AFTA Printer (iOS)</strong> — shipped an App Store utility for retail staff: Odoo ERP sign-in, live product catalog, Bluetooth thermal label printing, and batch labels.
+                  <a href="https://apps.apple.com/us/app/afta-printer/id6792237470" target="_blank" rel="noopener">View on App Store</a>
+                </li>
+                <li>
+                  <strong>Internal Platforms</strong> — building and maintaining internal web platforms across AFTA operations.
+                </li>
+                <li>
+                  End-to-end freelance product work: iOS, frontend, UX, deployment, and ongoing improvements.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-date-badge">Sep 2022 – May 2024</div>
+            <div class="timeline-content">
+              <h2>Technology Support Intern</h2>
+              <h3>New York University · Interactive Media Arts</h3>
+              <ul>
+                <li>
+                  Automated OS provisioning for 50+ IMA workstations using JAMF scripts, cutting setup time by 40%.
+                </li>
+                <li>
+                  Developed shell scripts / Python utilities to diagnose and remediate OS-level issues in under 1 hour.
+                </li>
+                <li>
+                  Resolved hardware and OS issues for 50+ workstations in under 2 hours, maintaining 95% uptime.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="timeline-section">
+      <h1>EDUCATION</h1>
+      <div class="timeline-container">
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-line"></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-date-badge">Sep 2026 – 2028</div>
+            <div class="timeline-content">
+              <h2>M.Sc. in Imaging and Light in Extended Reality (IMLEX)</h2>
+              <h3>
+                Erasmus Mundus Joint Master · University of Eastern Finland,
+                Joensuu
+              </h3>
+              <p class="edu-focus">
+                Extended Reality · Computer Vision · Imaging · Photonics ·
+                Creative Technology
+              </p>
+              <ul>
+                <li>
+                  Joint Master programme across imaging, lighting, computer science, and XR — with mobility through France, Belgium, and Japan.
+                </li>
+                <li>
+                  Path: University Jean Monnet (Saint-Étienne) → KU Leuven summer school → Toyohashi University of Technology (Japan).
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-date-badge">Sep 2022 – May 2026</div>
+            <div class="timeline-content">
+              <h2>
+                B.S. in Computer Science · Minors in Interactive Media Arts &amp;
+                Chinese Language
+              </h2>
+              <h3>New York University Shanghai · Graduated May 2026</h3>
+              <div class="education-courses">
+                <h4>Relevant Coursework</h4>
+                <ul>
+                  <li>Parallel Computing (OpenMP, MPI, CUDA)</li>
+                  <li>Operating Systems</li>
+                  <li>Computer Architecture</li>
+                  <li>Algorithms &amp; Data Structures</li>
+                  <li>Nature of Code (Creative Coding)</li>
+                  <li>Web Development</li>
+                  <li>Game Programming</li>
+                  <li>Digital Logic</li>
+                  <li>Computer Systems Organization</li>
+                  <li>Interactive Media Arts</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="awards" class="timeline-section">
+      <h1>AWARDS &amp; RECOGNITION</h1>
+      <div class="timeline-container">
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-line"></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-date-badge">2026</div>
+            <div class="timeline-content">
+              <h2>Best Spatial UI</h2>
+              <h3>Spatial Shanghai AR/VR Hackathon</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-line"></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-date-badge">2025</div>
+            <div class="timeline-content">
+              <h2>Capstone Distinction Award</h2>
+              <h3>NYU Shanghai</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            <div class="marker-line"></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-date-badge">Dec 2024</div>
+            <div class="timeline-content">
+              <h2>1st Place – On-Device AI Builders Hackathon</h2>
+              <h3>
+                Qualcomm × NYU Tandon × Microsoft × LM Studio
+              </h3>
+              <ul>
+                <li>
+                  Built an on-device legal document analyzer with local AI, placing 1st out of 20 teams.
+                </li>
+                <li>
+                  <a
+                    href="https://www.qualcomm.com/developer/blog/2024/12/on-device-ai-builders-hackathon-qualcomm-lmstudio-microsoft"
+                    target="_blank"
+                    rel="noopener"
+                    >Qualcomm Developer Blog</a
+                  >
+                  ·
+                  <a
+                    href="https://www.youtube.com/watch?v=v513FoIXxWk"
+                    target="_blank"
+                    rel="noopener"
+                    >Q&amp;A with Qualcomm</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+          </div>
+          <div class="timeline-card">
+            <div class="timeline-date-badge">Sep 2023 – May 2024</div>
+            <div class="timeline-content">
+              <h2>Technical Workshop Event Organizer</h2>
+              <h3>Interactive Media Arts · New York University</h3>
+              <ul>
+                <li>
+                  Led biweekly workshops on AR/VR (Unity, Unreal), creative coding (p5.js, Processing), and hardware/software integration for 50+ participants.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="languages" class="timeline-section">
+      <h1>LANGUAGES</h1>
+      <div class="languages-grid">
+        <div class="language-item">
+          <span class="language-name">Mongolian</span>
+          <span class="language-level">Native</span>
+        </div>
+        <div class="language-item">
+          <span class="language-name">English</span>
+          <span class="language-level">Fluent</span>
+        </div>
+        <div class="language-item">
+          <span class="language-name">Chinese</span>
+          <span class="language-level">Professional / Advanced</span>
+        </div>
+        <div class="language-item">
+          <span class="language-name">Japanese</span>
+          <span class="language-level">Elementary</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="youtube" class="timeline-section">
+      <h1>YOUTUBE</h1>
+      <div class="youtube-header">
+        <a
+          class="youtube-handle"
+          href="https://www.youtube.com/@khulugs"
+          target="_blank"
+          rel="noopener"
+          >@khulugs</a
+        >
+        <p class="youtube-tagline">
+          Creative technology, travel &amp; life in motion.
+        </p>
+        <p class="youtube-blurb">
+          I document life as a creative technologist — building things,
+          exploring new technologies, traveling, and navigating life across
+          different countries.
+        </p>
+      </div>
+      <div class="youtube-grid">
+        <a
+          class="youtube-card"
+          href="https://www.youtube.com/watch?v=2h4Dijz3hEs"
+          target="_blank"
+          rel="noopener"
+        >
+          <img
+            src="https://i.ytimg.com/vi/2h4Dijz3hEs/hqdefault.jpg"
+            alt="I Thought I Was Done Studying..."
+          />
+          <span>I Thought I Was Done Studying...</span>
+        </a>
+        <a
+          class="youtube-card"
+          href="https://www.youtube.com/watch?v=8QlZztec6rQ"
+          target="_blank"
+          rel="noopener"
+        >
+          <img
+            src="https://i.ytimg.com/vi/8QlZztec6rQ/hqdefault.jpg"
+            alt="A Day in Kuopio, Finland"
+          />
+          <span>A Day in Kuopio, Finland</span>
+        </a>
+        <a
+          class="youtube-card"
+          href="https://www.youtube.com/watch?v=6wS___iIhrM"
+          target="_blank"
+          rel="noopener"
+        >
+          <img
+            src="https://i.ytimg.com/vi/6wS___iIhrM/hqdefault.jpg"
+            alt="Chinatown NYC | A Cinematic Short Film"
+          />
+          <span>Chinatown NYC · Cinematic Short</span>
+        </a>
+      </div>
+      <a
+        class="youtube-cta"
+        href="https://www.youtube.com/@khulugs"
+        target="_blank"
+        rel="noopener"
+        >View channel →</a
+      >
+    </section>
+
+    <section class="chat-beat" id="chat5">
+      <div class="chat-thread">
+        <div class="message bot">
+          That's my journey so far.<br />
+          But who am I beyond the code?
+        </div>
+        <button class="message user" onclick="scrollToSection('about')">
+          Tell me about you →
+        </button>
+      </div>
     </section>
 
     <section id="about">
@@ -256,183 +621,37 @@
             </div>
             <div class="flip-card-back">
               <div class="back-text">
-                I'm Ganaa Bayaraa, a Computer Science major with Interactive Media Arts at NYU Shanghai, graduating May 2026. Raised in Mongolia and now in Shanghai, I blend creativity with tech—leading development at Polymaker, automating systems at NYU, and building award-winning on-device AI tools. I live for full-stack projects in JavaScript, Python, and React, always chasing that "aha!" moment.
+                Beyond the code — still figuring myself out. Building, wandering,
+                filming, saying yes.
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <section id="experience">
-      <h1>EXPERIENCE</h1>
-      <div class="timeline-container">
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="marker-dot"></div>
-            <div class="marker-line"></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-date-badge">Apr 2024 – Present</div>
-            <div class="timeline-content">
-              <h2>Software & Web Developer Intern</h2>
-              <h3>POLYMAKER LLC · Shanghai, China</h3>
-              <ul>
-                <li>
-                  Led end-to-end development across 3 production websites (~150K monthly visitors), from feature rollout to platform migrations and performance tuning.
-                </li>
-                <li>
-                  Automated Amazon listings and data extraction with a custom Python app, reducing manual effort by 50%.
-                </li>
-                <li>
-                  Built and deployed 3 WordPress Bricks/Oxygen modules, improving UX and reducing load time by ~25%.
-                </li>
-                <li>
-                  Developed interactive JavaScript graphics (Canvas API, D3.js) for products, increasing session duration by 30%.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="marker-dot"></div>
-            <div class="marker-line"></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-date-badge">Sep 2022 – May 2024</div>
-            <div class="timeline-content">
-              <h2>Technology Support Intern</h2>
-              <h3>New York University · Interactive Media Arts Department</h3>
-              <ul>
-                <li>
-                  Automated OS provisioning for 50+ IMA workstations using JAMF scripts, cutting setup time by 40%.
-                </li>
-                <li>
-                  Developed shell scripts / Python utilities to diagnose and remediate OS-level issues in under 1 hour.
-                </li>
-                <li>
-                  Resolved hardware and OS issues for 50+ workstations in under 2 hours, maintaining 95% uptime.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="marker-dot"></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-date-badge">Sep 2022 – Dec 2022</div>
-            <div class="timeline-content">
-              <h2>IT Support Assistant</h2>
-              <h3>New York University · Information Technology</h3>
-              <ul>
-                <li>
-                  Assisted faculty and students with hardware/software issues across campus.
-                </li>
-                <li>
-                  Processed and maintained instructional documentation for NYU Shanghai systems and equipment.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+      <div class="about-bio">
+        <h2 class="about-bio-title">Beyond the code</h2>
+        <p>Honestly, I’m still figuring myself out.</p>
+        <p>
+          I like building things, but I also like getting lost in new places,
+          meeting people I never expected to meet, filming random moments, and
+          saying yes to things that scare me a little. I’ve moved around a lot,
+          and every place has left something with me.
+        </p>
+        <p>
+          I don’t really know what I’m supposed to become yet. And maybe that’s
+          okay.
+        </p>
+        <p>
+          I’m starting to believe life isn’t meant to be taken too seriously. I
+          want to enjoy it, stay close to good people, make memories, and use
+          what I can do to create something meaningful around me.
+        </p>
+        <p>
+          For now, I’m just trying to live a little, build a little, and see
+          where it takes me.
+        </p>
       </div>
-    </section>
-
-    <section id="education">
-      <h1>EDUCATION</h1>
-      <div class="timeline-container">
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="marker-dot"></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-date-badge">Expected May 2026</div>
-            <div class="timeline-content">
-              <h2>B.Sc. Computer Science, Interactive Media Arts</h2>
-              <h3>New York University Shanghai · Shanghai, China</h3>
-              <div class="education-courses">
-                <h4>Relevant Coursework:</h4>
-                <ul>
-                  <li>Parallel Computing (OpenMP, MPI, CUDA)</li>
-                  <li>Operating Systems</li>
-                  <li>Computer Architecture</li>
-                  <li>Algorithms & Data Structures</li>
-                  <li>Nature of Code (Creative Coding, p5.js, Processing)</li>
-                  <li>Web Development</li>
-                  <li>Game Programming</li>
-                  <li>Digital Logic</li>
-                  <li>Computer Systems Organization</li>
-                  <li>Interactive Media Arts</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="awards">
-      <h1>AWARDS & ACTIVITIES</h1>
-      <div class="timeline-container">
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="marker-dot"></div>
-            <div class="marker-line"></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-date-badge">Dec 2024</div>
-            <div class="timeline-content">
-              <h2>1st Place – On-Device AI Builders Hackathon</h2>
-              <h3>Qualcomm × Microsoft × LM Studio · New York</h3>
-              <ul>
-                <li>
-                  Developed an on-device legal document analyzer with local AI technologies, securing 1st place out of 20 teams.
-                </li>
-                <li>
-                  <a href="https://www.qualcomm.com/developer/blog/2024/12/on-device-ai-builders-hackathon-qualcomm-lmstudio-microsoft" target="_blank" rel="noopener">Official Qualcomm Developer Blog</a> · 
-                  <a href="https://www.youtube.com/watch?v=v513FoIXxWk" target="_blank" rel="noopener">Q&A Video with Qualcomm</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <div class="marker-dot"></div>
-          </div>
-          <div class="timeline-card">
-            <div class="timeline-date-badge">Sep 2023 – May 2024</div>
-            <div class="timeline-content">
-              <h2>Technical Workshop Event Organizer</h2>
-              <h3>Interactive Media Arts · New York University</h3>
-              <ul>
-                <li>
-                  Led biweekly technical workshops on AR/VR devices (Unity, Unreal Engine), creative coding (p5.js, Processing), and hardware/software integration, training 50+ participants.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Chat CTA #5 -->
-    <section id="chat5-messages" class="chat-window">
-      <div class="message bot">
-        That's my journey so far.<br />
-        But who am I beyond the code?
-      </div>
-    </section>
-    <section id="chat5-actions" class="chat-window">
-      <button class="message user" onclick="scrollToSection('about')">
-        Tell me about you →
-      </button>
     </section>
 
     <section id="contact">
@@ -464,7 +683,7 @@
         </li>
         <li>
           <a
-            href="https://www.youtube.com/@khulugsjourney"
+            href="https://www.youtube.com/@khulugs"
             target="_blank"
             rel="noopener"
             >YOUTUBE</a
@@ -477,7 +696,7 @@
     <section id="footer">
       <div class="footer-content">
         <p>
-          © 2025 Ganaa Bayaraa. All rights reserved.
+          © 2026 Ganaa Bayaraa. All rights reserved.
           <br />
           Made with creativity and a bit of code.
         </p>

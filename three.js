@@ -134,6 +134,17 @@ function animate() {
 
 animate();
 
+function onWindowResize() {
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+  composer.setSize(w, h);
+  bloomPass.setSize(w, h);
+}
+window.addEventListener("resize", onWindowResize);
+
 document.addEventListener("DOMContentLoaded", () => {
   const projectCards = document.querySelectorAll(".project-card");
   const aboutCards = document.querySelectorAll(".flip-card");
